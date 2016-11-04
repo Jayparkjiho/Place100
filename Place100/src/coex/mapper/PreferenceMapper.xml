@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PreferenceMapper">
+
+	<insert id="insert" parameterType="Preference">
+		insert into COEXPREFERENCE_TB values(
+		seq_pref_no.nextval, #{pref_10}, #{pref_20}, #{pref_30}, #{pref_40},
+		#{pref_male}, #{pref_female},
+		#{pref_conference}, #{pref_shopping},
+		#{pref_date}, #{pref_meal}, #{pref_culture}, #{pref_etc},
+		#{pref_single}, #{pref_two}, #{pref_three}, #{pref_four},
+		#{pref_five}, #{pref_ten},
+		#{pref_10_11}, #{pref_11_12}, #{pref_12_13},
+		#{pref_13_14}, #{pref_14_15}, #{pref_15_16}, #{pref_16_17},
+		#{pref_17_18}, #{pref_18_19}, #{pref_19_20}, #{pref_20_21},#{pref_21_22})
+	</insert>
+
+	<!-- PREFNO를 비교해 한개만 가져오는 예제 -->
+	<select id="findPref" parameterType="int" resultType="Preference">
+		select *
+		from COEXPREFERENCE_TB where pref_no= #{prefNo}
+	</select>
+
+	<!-- preference를 업데이트 하는 방법 -->
+	<update id="update" parameterType="Preference">
+		UPDATE COEXPREFERENCE_TB
+		SET
+		pref_10 = #{pref_10},
+		pref_20 = #{pref_20},
+		pref_30 = #{pref_30},
+		pref_40 = #{pref_40},
+		pref_male = #{pref_male},
+		pref_female =
+		#{pref_female},
+		pref_conference = #{pref_conference},
+		pref_shopping =
+		#{pref_shopping},
+		pref_date = #{pref_date},
+		pref_meal = #{pref_meal},
+		pref_culture = #{pref_culture},
+		pref_etc = #{pref_etc},
+		pref_single =
+		#{pref_single},
+		pref_two = #{pref_two},
+		pref_three = #{pref_three},
+		pref_four = #{pref_four},
+		pref_five = #{pref_five},
+		pref_ten =
+		#{pref_ten},
+		pref_10_11 = #{pref_10_11},
+		pref_11_12 = #{pref_11_12},
+		pref_12_13 = #{pref_12_13},
+		pref_13_14 = #{pref_13_14},
+		pref_14_15 =
+		#{pref_14_15},
+		pref_15_16 = #{pref_15_16},
+		pref_16_17 = #{pref_16_17},
+		pref_17_18 = #{pref_17_18},
+		pref_18_19 = #{pref_18_19},
+		pref_19_20 =
+		#{pref_19_20},
+		pref_20_21 = #{pref_20_21},
+		pref_21_22 = #{pref_21_22}
+
+		where pref_no = #{pref_no}
+	</update>
+
+	<select id="getPrefNo" resultType="int">
+		SELECT LAST_NUMBER FROM SEQ where sequence_name='SEQ_PREF_NO'
+	</select>
+
+
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PlaceAndPrefMapper">
+
+
+	<!-- 모든 Place와 Place의 Pref를 가져오는 쿼리-->
+	<select id="getAllList" resultType="PlaceAndPref">
+		SELECT place.* , pref.*
+		FROM COEXPLACE_TB place, COEXPREFERENCE_TB pref
+		WHERE place.PREF_NO = pref.PREF_NO
+		ORDER BY place.PLACE_NO
+	</select>
+
+
+</mapper>

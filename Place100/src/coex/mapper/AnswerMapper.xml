@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="AnswerMapper">
+
+<insert id="insertAnswer" parameterType="Answer">
+	insert into answer_tb values(
+			seq_answer_no.nextval, #{answer_purpose_no}, #{answer_date}, 
+			#{answer_start_time}, #{answer_end_time}, #{answer_sex}, #{answer_age}, 
+			#{answer_head_count}, #{answer_traffic}, #{answer_meal}, #{answer_scount}, 
+	<choose>
+		<when test="answer_purpose_no != 0 or answer_purpose_no != 3">
+			0, '0', '0', 0,
+		</when>
+		<when test="answer_purpose_no == 0 or answer_purpose_no == 3">
+			#{answer_sone_eventno}, #{answer_sone_start}, #{answer_sone_end}, #{answer_sone_node},
+		</when>
+	</choose>
+	<choose>
+		<when test="answer_scount == 0">
+			0, '0', '0', 0, 0, '0', '0', 0
+	</when>
+		<when test="answer_scount == 1">
+			#{answer_stwo_eventno}, #{answer_stwo_start}, #{answer_stwo_end}, #{answer_stwo_node}, 0, '0', '0', 0
+	</when>
+		<when test="answer_scount == 2">
+			#{answer_stwo_eventno}, #{answer_stwo_start}, #{answer_stwo_end}, #{answer_stwo_node},
+			#{answer_sthree_eventno}, #{answer_sthree_start}, #{answer_sthree_end}, #{answer_sthree_node}
+	</when>
+	</choose>
+			
+	)
+</insert>
+
+<!--  -->
+<select id="getSeqNo" resultType="int">
+SELECT LAST_NUMBER FROM SEQ where sequence_name='SEQ_ANSWER_NO'
+</select>
+
+
+
+</mapper>

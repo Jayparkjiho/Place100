@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ActionMapper">
+
+	<!-- Action을 넣는 맵 -->
+	<insert id="insert" parameterType="Action">
+		insert into COEXACTION_TB 
+		values(
+		seq_action_no.nextval, 
+		#{action_name}, #{place_no}, 
+		#{action_start_date}, #{action_end_date}, 
+		#{action_photo_name}
+		)
+	</insert>
+	
+	<select id="getActionList" parameterType="int" resultType="Action">
+		select * from COEXACTION_TB order by action_no
+	</select>
+	
+	<!-- Action을 찾아오는 Map -->
+	<select id="find" parameterType="int" resultType="Action">
+		select * from COEXACTION_TB where action_no = #{actionNo}
+	</select>
+	
+	<!-- 장소(PLACE) 번호로 Action 찾기 (여러개 값 가능) 이렇게 뽑아온 값을 Java단에서 Answer의 현재 날짜와 비교해 해당 날짜의 액션을 찾아온다-->
+	<!-- 이렇게 찾아온 액션은 목록화 시켜서 사용자에게 보여준다  -->
+	<select id="placeActionList" parameterType="int" resultType="Action">
+		select * from COEXACTION_TB where place_no = #{placeNo}
+	</select>
+	
+	<!-- Action을 Update하는 Map -->
+	<update id="update" parameterType="Action" >
+		UPDATE COEXACTION_TB
+		SET
+		ACTION_NAME = #{action_name},
+		PLACE_NO = #{place_no},
+		ACTION_START_DATE = #{action_start_date},
+		ACTION_END_DATE   = #{action_end_date},
+		ACTION_PHOTO_NAME = #{action_photo_name}
+		WHERE ACTION_NO = #{action_no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete * from COEXACTION_TB where action_no = #{actionNo}
+	</delete>
+
+
+</mapper>

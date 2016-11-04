@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PlaceMapper">
+	
+	<insert id="insert" parameterType="Place">
+		insert into coexplace_tb values(
+		seq_place.nextval, #{place_name}, #{place_nodeno}, #{place_info}, 
+		#{place_price}, #{place_eval_avg}, #{place_working_day}, #{place_open_time}, 
+		#{place_close_time}, #{place_category}, #{place_runtime_min}, #{place_runtime_max}, 
+		#{place_photo_name}, #{place_type}, #{pref_no})
+	</insert>
+	
+	<select id="selectList" parameterType="map" resultType="List">
+		select * from coexplace_tb where place_category = %#{category}%
+	</select>
+	
+	<select id="placeList" parameterType="map" resultType="Place">
+		select * from coexplace_tb
+			<if test="place_type lt 9">
+			where
+				<if test="place_type == 0">
+				place_type = #{place_type}
+				</if>
+				<if test="place_type == 1">
+				place_type = #{place_type}
+				</if>
+				<if test="place_type == 2">
+				place_type = #{place_type}
+				</if>
+				<if test="place_type == 3">
+				place_type = #{place_type}
+				</if>
+				<if test="place_type == 4">
+				place_type = #{place_type}
+				</if>
+			</if>
+			order by place_name
+	</select>
+	
+	<select id="countAll" parameterType="Map" resultType="int">
+		select count(*) from coexplace_tb
+		<if test="place_type lt 9">
+		where
+			<if test="place_type == 0">
+			place_type = #{place_type}
+			</if>
+			<if test="place_type == 1">
+			place_type = #{place_type}
+			</if>
+			<if test="place_type == 2">
+			place_type = #{place_type}
+			</if>
+			<if test="place_type == 3">
+			place_type = #{place_type}
+			</if>
+			<if test="place_type == 4">
+			place_type = #{place_type}
+			</if>
+		</if>
+	</select>
+	
+	<select id="findPlace" parameterType="int" resultType="Place">
+		select * from coexplace_tb where place_no = #{place_no}
+	</select>
+	
+	<select id="findAction" parameterType="int" resultType="int">
+		select place_no from coexaction_tb where action_no = #{action_no}
+	</select>
+	
+</mapper>

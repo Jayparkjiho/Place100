@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ScheduleMapper">
+
+	<insert id="insert" parameterType="Schedule">
+		insert into COEX_SCHEDULE_TB values(
+		seq_schedule_no2.nextval, #{mem_id}, #{schedule_date}, #{schedule_start_time}, #{schedule_end_time},
+		#{schedule_event_list}, #{schedule_time_list},
+		#{schedule_node_list}, #{schedule_time_table},
+		#{schedule_img_list}, #{prefno}, #{schedule_eval}, #{answerno})
+	</insert>
+
+	<!-- PREFNO를 비교해 한개만 가져오는 예제 -->
+	<select id="findSchedule" parameterType="int" resultType="Schedule">
+		select *
+		from COEX_SCHEDULE_TB where SCHEDULE_NO= #{SCHEDULE_NO}
+	</select>
+	
+	<update id="updateSchedule" parameterType="Schedule">
+	UPDATE COEX_SCHEDULE_TB
+		SET
+		mem_id = #{mem_id},
+		schedule_date = #{schedule_date},
+		schedule_start_time =  #{schedule_start_time},
+		schedule_end_time = #{schedule_end_time},
+		schedule_event_list = #{schedule_event_list},
+		schedule_time_list = #{schedule_time_list},
+		schedule_node_list = #{schedule_node_list},
+		schedule_time_table = #{schedule_time_table},
+		schedule_img_list = #{schedule_img_list},
+		prefno = #{prefno}, 
+		schedule_eval = #{schedule_eval},
+		answerno = #{answerno}
+		where SCHEDULE_NO = #{schedule_no}
+	</update>
+	
+<select id="getSeqNo" resultType="int">
+SELECT LAST_NUMBER FROM SEQ where sequence_name='SEQ_SCHEDULE_NO2'
+</select>	
+
+<select id="getLastNo" resultType="int">
+SELECT * FROM (SELECT SCHEDULE_NO FROM COEX_SCHEDULE_TB ORDER BY SCHEDULE_NO DESC) WHERE ROWNUM = 1
+</select>
+
+	
+</mapper>

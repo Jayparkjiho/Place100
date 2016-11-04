@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DijkstraMapper">
+
+<select id="getAdjList" resultType="String">
+SELECT ADJLIST FROM COEX_ADJ_TABLE ORDER BY NODENAME
+</select>
+
+
+</mapper>
