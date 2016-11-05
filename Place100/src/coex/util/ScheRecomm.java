@@ -35,7 +35,16 @@ import coex.vo.Schedule;
  * 
  */
 public class ScheRecomm {
-
+	//TODO:
+	//장소+선호도 합친 모든 값의 목록 
+	private ArrayList<PlaceAndPref> pnpArrList;
+	
+	
+	
+	public ScheRecomm() {
+		
+		pnpArrList = (ArrayList<PlaceAndPref>) new PlaceAndPrefDAO().getAllList();
+	}
 	/**
 	 * Answer를 입력받아 Schedule로 만드는 메쏘드 주의:DB상에 Answer와 Preference는 만들지만 Schedule은
 	 * 바로 입력하지 않는다. 추천이 완성되면 넣어주어야 한다
@@ -47,12 +56,12 @@ public class ScheRecomm {
 
 		// 먼저 Answer를 DB에 넣고
 		ansDAO.insertAnswer(answer);
+		//방금 넣은 Answer의 식별자(Primary Key)를 받아와서
 		int answer_no = ansDAO.getSeqNo();
-		answer.setAnswer_no(answer_no);
-		// 새로운 스케줄 객체 생성
+		//현재 Answer의 고유키를 업데이트 해준다
 		Schedule resultSche = new Schedule();
 		// 스케줄 객체에 답변의 식별자 저장
-		resultSche.setAnswerno(answer.getAnswer_no());
+		resultSche.setAnswerno(answer_no);
 		// 스케줄 객체에 스케줄 만든 회원 ID 저장
 		// 스케줄 날짜 저장
 		Format formatter = new SimpleDateFormat("yy/MM/dd");
@@ -127,6 +136,7 @@ public class ScheRecomm {
 				
 				// 만약 액션이면 해당하는 액션의 플레이스 넣어줌
 				if (Integer.parseInt(s) > 20000) {
+					//integer.parseInt(s)는 action_no라는 action테이블의 기본키
 					Place pp = pDAO.selectPlace(actDAO.findAction(Integer.parseInt(s)).getPlace_no());
 					pList.add(pp);
 				} else {
@@ -159,8 +169,7 @@ public class ScheRecomm {
 		// 현재 스캐줄을 채워줄 시작시간, 종료시간
 
 		// 먼저 DB에서 PlaceAndPref를 가져와서 ArrayList에 담는다.
-		PlaceAndPrefDAO pnpDAO = new PlaceAndPrefDAO();
-		ArrayList<PlaceAndPref> pnpList = (ArrayList<PlaceAndPref>) pnpDAO.getAllList();
+		ArrayList<PlaceAndPref> pnpList = new ArrayList<>(this.pnpArrList);
 
 		// 그 후 소거 파트로 넘어간다
 
@@ -269,17 +278,17 @@ public class ScheRecomm {
 		 */
 
 		// 최종선택부분=====================================================================
-		HashMap<Integer, Integer> placeNoAndScore = new HashMap<>();
-		for (PlaceAndPref p : pnpList) {
-			int score = this.answerToScore(answer, p, startTime);
-			int placeNo = p.getPlace_no();
+		HashMap<Integer, Integer> placeNoAndScore = new HashMap<>();//해쉬맵을 만들고
+		for (PlaceAndPref p : pnpList) {//반복문 돌면서
+			int score = this.answerToScore(answer, p, startTime);//엔써 기반으로 점수를 추출하고
+			int placeNo = p.getPlace_no();//해당 플레이스 넘버 구한 뒤
 			// System.out.println(placeNo + ":" + score);
-			placeNoAndScore.put(placeNo, score);
+			placeNoAndScore.put(placeNo, score);//맵에 넣어준다
 		}
 
 		// 벨류로 정렬
-		ArrayList<Integer> finalWinners = new ArrayList<>();
-		Iterator<Integer> it = this.sortByValue(placeNoAndScore).iterator();
+		ArrayList<Integer> finalWinners = new ArrayList<>();//최종승자들이 담길 ArrayList
+		Iterator<Integer> it = this.sortByValue(placeNoAndScore).iterator();//해쉬맵을 반복할 반복자
 
 		int aaa = it.next();
 		int count = 0;

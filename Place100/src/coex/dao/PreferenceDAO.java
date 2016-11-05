@@ -44,8 +44,12 @@ public class PreferenceDAO {
 		}
 		return pref;
 	}
-	// getSeqNo
 
+	
+	/**
+	 * db에 있는 preference 테이블에서 마지막으로 저장된 preference 정보의 seq_pref_no를 가져오는 메소드
+	 * @return seq_pref_no(기본키)
+	 */
 	public int getPrefNo() {
 		int result = 0;
 		try {

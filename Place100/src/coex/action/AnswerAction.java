@@ -90,8 +90,6 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 		answer.setAnswer_head_count(answer2.getAnswer_head_count());
 		answer.setAnswer_traffic(answer2.getAnswer_traffic());
 		answer.setAnswer_meal(answer2.getAnswer_meal());
-		AnswerDAO dao = new AnswerDAO();
-		dao.insertAnswer(answer);
 		ScheRecomm scheRecom = new ScheRecomm();
 		Schedule newSche = scheRecom.ansToSche(answer, "익명");
 		scheRecom.scheduleRecomm(answer, newSche, newSche.getSchedule_start_time(), newSche.getSchedule_end_time());

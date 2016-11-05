@@ -45,6 +45,14 @@ public class ActionDAO {
 	}
 	
 	//select param:actionNo
+	
+	/**
+	 * @author JayPark
+	 * schedule 생성할 때 만약 Schedule_event_list안에 action이 포함되어 있다면
+	 * 그 action_no를 입력받아 db에서 action의 객체를 가져오는 메소드.
+	 * @param actionNo
+	 * @return action객체
+	 */
 	public Action findAction(int actionNo){
 		Action result = null;
 		try{

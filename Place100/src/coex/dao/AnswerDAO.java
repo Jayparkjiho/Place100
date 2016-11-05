@@ -30,6 +30,10 @@ public class AnswerDAO {
 		}
 	}
 	
+	/**
+	 * db에서 마지막으로 입력받은 answer객체의 기본키(answer_no)을 찾아서 보내는 메소드
+	 * @return answer_no
+	 */
 	public int getSeqNo(){
 		int result=0;
 		try{

@@ -116,6 +116,12 @@ public class PlaceDAO {
 		return place;
 	}
 	
+	/**
+	 * @author JayPark
+	 * place_no를 입력받아 db에서 그것에 맞은 action의 장소의 객체를 가져온다.
+	 * @param place_no
+	 * @return
+	 */
 	public Place selectPlace(int place_no){
 		Place p = null;
 		try{
