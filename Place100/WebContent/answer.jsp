@@ -10,6 +10,7 @@ $(document).ready(function() {
 	var purpose='';
 	var answer = new Object();
 	var actionList='';
+	var date = '';
 	
 	$('input[class=radio-button]').click(function(){
 		purpose = $(this).val();
@@ -36,6 +37,134 @@ $(document).ready(function() {
 		}
 	});//클릭 function 종료
 	console.log(answer);
+	
+	
+	//datepicker
+	//----------variables----------//
+
+	var day = "";
+	var month = "";
+	var year = "";
+	var currentDate = "";
+	var monthStartDay = "";
+
+	var monthTextArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+	var dayTextArray = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+	//----------functions----------//
+
+	function getMonthInfo(year, month) {
+
+	  //use current month to find number of days in month
+	  //i dont know why i have to add 1 to month
+	  var startDate = new Date(year, month + 1, 0);
+	  var monthLength = startDate.getDate();
+	  
+	  var startDate = new Date(year, month, 1);
+	  var monthStartDay = startDate.getDay();
+	  
+	  return [monthLength, monthStartDay];
+	  
+	}
+
+	function drawCal(monthInfo) {
+
+	  var daysInMonth = monthInfo[0];
+	  var monthStartDays = monthInfo[1];
+	  
+	  //clear cal tbody
+	  $("#cal").empty();
+	  $("#cal").append("<tr><td>sun</td><td>mon</td><td>tue</td><td>wed</td><td>thur</td><td>fri</td><td>sat</td>");
+	  
+	  //create empty row, append to to tbody
+	  var $rowOut = $("<tr></tr>");
+	  $("#cal").append($rowOut);
+
+	  //shift first row by month start date
+	  for (var i = 1; i <= monthStartDays; i++) {
+	    var $day = "<td></td>";
+	    $("#cal tr:last").append($day);
+	  }
+	  
+	  //for each day, append a td to the row
+	  for (var i = 1; i <= daysInMonth; i++) {
+	    var $day = "<td class='eachDay'><a class='dayDay'>" + (i) + "</a></td>";
+	    $("#cal tr:last").append($day);
+
+	    //if day 7 (w/shift), append row contaning 7 days to tbody and clear row
+	    if ((i + monthStartDays) % 7 == 0 & i != 0) {
+	      $("#cal").append($rowOut);
+	      $rowOut = "<tr></tr>";
+	      $("#cal").append($rowOut);
+	    }
+	  }
+	}
+
+	//----------wiring----------//
+
+	$(".button_left").click(function() {
+
+	  month--;
+
+	  if (month < 0) {
+	    year--;
+	    month = 11;
+	  }
+
+	  //left button click
+	  $(".cal_head span").text(monthTextArray[month] + " " + year);
+	  drawCal(getMonthInfo(year, month));
+
+	});
+
+	//right button click
+	$(".button_right").click(function() {
+
+	  month++;
+
+	  if (month > 11) {
+	    year++;
+	    month = 0;
+	  }
+
+	  $(".cal_head span").text(monthTextArray[month] + " " + year);
+	  drawCal(getMonthInfo(year, month));
+
+	});
+
+	$("#cal").on("click","a",function(e) {
+	  $("td > a").css('color', '#039be5');
+	  $(this).css('color', 'red');
+		
+	  e.preventDefault();
+	  //$(this).parent().addClass("circle");
+	  
+	  
+	  date = year+"-"+(month+1) + "-" + $(this).html();
+	  answer.answer_date = date;
+	  console.log(answer);
+	  
+	  var outputDate = monthTextArray[month] + " " + $(this).html() +", " + year;
+	  console.log(outputDate);
+	  $("#outputText").text(outputDate);
+	  
+	});
+
+	//----------run----------//
+
+	//get current month and year
+	currentDate = new Date();
+	year = currentDate.getFullYear();
+	month = currentDate.getMonth();
+
+	//get text month name from month number and write to span
+	$(".cal_head span").text(monthTextArray[month] + " " + year);
+
+	//inital calander draw based on current month
+	drawCal(getMonthInfo(year, month));
+	
+	
 	
 });
 </script>
@@ -154,17 +283,35 @@ $(document).ready(function() {
 
 			<li class="slide img2"
 				style="background-image: url('img/background.jpg');">
-				<div class="info">
-					<!-- <p class="title">Mercedes-Benz 300SL</p>
-					<p class="description">
-						<strong>1956</strong> —&#8202;2996cc, 212-222hp
-					</p> -->
-					<h1>2page</h1>
-					
-				</div>
-				
-				
-			</li>
+
+<div class="calander noselect">
+  
+  <div class="cal_head paper-shadow-top-z-2">
+    
+    <button class ="button_left">
+      <i class="material-icons">keyboard_arrow_left</i></button>
+    
+    <span id="month_label">Month</span>
+    
+    <button class ="button_right"><i class="material-icons">keyboard_arrow_right</i></button>
+   
+  </div>  
+    
+  
+  <div class = "cal_body paper-shadow-bottom-z-1">
+      
+    <table>
+      <tbody id = "cal">
+      </tbody>
+    </table>
+  </div>
+  
+  <div class = "cal_output paper-shadow-top-z-1">
+    <span id="outputText"></span>
+  </div>
+  
+</div>  
+</li>
 
 			<li class="slide img3"
 				style="background-image: url('img/background.jpg');">
