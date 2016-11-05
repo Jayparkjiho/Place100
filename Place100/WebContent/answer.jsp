@@ -43,7 +43,12 @@ $(document).ready(function() {
 <title>Answer</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/style2.css">
+<link rel="stylesheet" type="text/css" href="main.css" />
+<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Advent+Pro:400,100,200,300,500,600,700' rel='stylesheet' type='text/css'>
+
 </head>
+
 <body>
 
 <jsp:include page="header.jsp" flush="false"/>
@@ -163,6 +168,7 @@ $(document).ready(function() {
 					</p> -->
 					<h1>2page</h1>
 				</div>
+				
 				
 			</li>
 
