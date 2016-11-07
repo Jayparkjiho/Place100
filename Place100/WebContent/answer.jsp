@@ -164,17 +164,94 @@ $(document).ready(function() {
 	//inital calander draw based on current month
 	drawCal(getMonthInfo(year, month));
 	
+	//시간 시간 시간
+	var start_time = '';
+	var end_time = '';
+	$("input[name='answer.start_time']").on("click", function () {
+		start_time = $(this).val();
+		answer.start_time = start_time;
+		console.log(answer);
+	});
 	
+	$("input[name='answer.end_time']").on("click", function () {
+		end_time = $(this).val();
+		if (start_time >= end_time) {
+			alert("시작시간보다 빠릅니다.");
+			$('input:radio[name="answer.end_time"][value="10"]').prop('checked', true);
+			$('label[for="e10"]').prop('checked', true);
+		}else{
+		answer.end_time = end_time;
+		console.log(answer);
+		}
+	});
+	//나이 answer radio click function
+	$("input[name='credit-card']").on("click", function () {
+		var answer_age = $(this).val();
+		answer.answer_age = answer_age;
+		console.log(answer);
+	});
+	//성별 answer  radio click function
+	$("input[name='gend']").on("click", function () {
+		var answer_sex = $(this).val();
+		answer.answer_sex = answer_sex;
+		console.log(answer);
+	});
+	//사람수 answer radio click funtion
+	$("input[name='many']").on("click", function () {
+		var answer_head_count = $(this).val();
+		answer.answer_head_count = answer_head_count;
+		console.log(answer);
+		if(answer_head_count == "1"){
+		       $("#con").show();
+		       $("#default").hide();
+		       $("#con-two").hide();
+		       $("#con-three").hide();
+		       $("#con-five").hide();
+		       $("#con-ten").hide();
+		      }else if(answer_head_count == "2"){
+		         $("#default").hide();
+		         $("#con").hide();
+		         $("#con-three").hide();
+		         $("#con-five").hide();
+		         $("#con-ten").hide();
+		         $("#con-two").show();
+		      }else if (answer_head_count == "3") {
+		         $("#default").hide();
+		         $("#con").hide();
+		         $("#con-two").hide();
+		         $("#con-five").hide();
+		         $("#con-ten").hide();
+		         $("#con-three").show();
+		     }else if (answer_head_count == "5") {
+		         $("#default").hide();
+		         $("#con").hide();
+		         $("#con-two").hide();
+		         $("#con-three").hide();
+		         $("#con-ten").hide();
+		         $("#con-five").show();
+		     }else if (answer_head_count == "10") {
+		         $("#default").hide();
+		         $("#con").hide();
+		         $("#con-two").hide();
+		         $("#con-three").hide();
+		         $("#con-five").hide();
+		         $("#con-ten").show();
+		        
+		     }
+	});
 	
 });
+//인원수 체크하는 펑션
+function div_OnOff(v,id){
+      // 라디오 버튼 value 값 조건 비교
+      
+     };
 </script>
 <title>Answer</title>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/style2.css">
-<link rel="stylesheet" type="text/css" href="main.css" />
-<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Advent+Pro:400,100,200,300,500,600,700' rel='stylesheet' type='text/css'>
-
+<!-- <link rel="stylesheet" href="css/style.css"> -->
+<!-- <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Advent+Pro:400,100,200,300,500,600,700' rel='stylesheet' type='text/css'> -->
+  <!-- <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/> -->
 </head>
 
 <body>
@@ -192,13 +269,13 @@ $(document).ready(function() {
 			style="-webkit-perspective: 1000px; -webkit-backface-visibility: hidden; -webkit-transform: translateX(200px);">
 
 			<li class="slide img1"
-				style="background-image: url('img/background.jpg');">
+				style="background-color: white; ">
 				
 				<div class="table">
                <div class="container">
                <div>
                   <div class="radio-tile-group">
-
+				
                      <div class="input-container">
                         <input id="walk" class="radio-button" type="radio" name="radio" value="0"/>
                         <div class="radio-tile">
@@ -282,9 +359,9 @@ $(document).ready(function() {
 			</li>
 
 			<li class="slide img2"
-				style="background-image: url('img/background.jpg');">
+				style="background-color: white; ">
 
-<div class="calander noselect">
+<div class="calander noselect" style="margin-top: 10%;">
   
   <div class="cal_head paper-shadow-top-z-2">
     
@@ -300,7 +377,7 @@ $(document).ready(function() {
   
   <div class = "cal_body paper-shadow-bottom-z-1">
       
-    <table>
+    <table style="width: 100%">
       <tbody id = "cal">
       </tbody>
     </table>
@@ -314,37 +391,123 @@ $(document).ready(function() {
 </li>
 
 			<li class="slide img3"
-				style="background-image: url('img/background.jpg');">
-				<div class="info">
-					<!-- <p class="title">Jaguar E-Type</p>
-					<p class="description">
-						<strong>1966</strong> —&#8202;3.8L, 265bhp
-					</p> -->
-					<h1>3page</h1>
+				style="background-color: white; ">
+				<div class="timetime" style="margin: 12%; width: 100%;">
+				<div class="spaceEmOut">
+					<fieldset class="switch switch-five">
+						<legend>시작시간</legend>
+						<input id="s10" name="answer.start_time" value="10" type="radio" checked /> <label for="s10">10시</label>
+						<input id="s11" name="answer.start_time" value="11" type="radio" /> <label for="s11">11시</label>
+						<input id="s12" name="answer.start_time" value="12" type="radio" /> <label for="s12">12시</label>
+						<input id="s13" name="answer.start_time" value="13" type="radio" /> <label for="s13">13시</label>
+						<input id="s14" name="answer.start_time" value="14" type="radio" /> <label for="s14">14시</label>
+						<input id="s15" name="answer.start_time" value="15" type="radio" /> <label for="s15">15시</label>
+						<input id="s16" name="answer.start_time" value="16" type="radio" /> <label for="s16">16시</label>
+						<input id="s17" name="answer.start_time" value="17" type="radio" /> <label for="s17">17시</label>
+						<input id="s18" name="answer.start_time" value="18" type="radio" /> <label for="s18">18시</label>
+						<input id="s19" name="answer.start_time" value="19" type="radio" /> <label for="s19">19시</label>
+						<input id="s20" name="answer.start_time" value="20" type="radio" /> <label for="s20">20시</label>
+						<input id="s21" name="answer.start_time" value="21" type="radio" /> <label for="s21">21시</label>
+						<input id="s22" name="answer.start_time" value="22" type="radio" /> <label for="s22">22시</label>
+						<span class="switch-button"></span>
+					</fieldset>
+				</div>
+				</div>
+				<div class="timetime" style="margin: 12%; width: 100%;">
+				<div class="spaceEmOut">
+					<fieldset class="switch switch-five2">
+						<legend>종료시간</legend>
+						<input id="e10" name="answer.end_time" value="10" type="radio" checked /> <label for="e10">10시</label>
+						<input id="e11" name="answer.end_time" value="11" type="radio" /> <label for="e11">11시</label>
+						<input id="e12" name="answer.end_time" value="12" type="radio" /> <label for="e12">12시</label>
+						<input id="e13" name="answer.end_time" value="13" type="radio" /> <label for="e13">13시</label>
+						<input id="e14" name="answer.end_time" value="14" type="radio" /> <label for="e14">14시</label>
+						<input id="e15" name="answer.end_time" value="15" type="radio" /> <label for="e15">15시</label>
+						<input id="e16" name="answer.end_time" value="16" type="radio" /> <label for="e16">16시</label>
+						<input id="e17" name="answer.end_time" value="17" type="radio" /> <label for="e17">17시</label>
+						<input id="e18" name="answer.end_time" value="18" type="radio" /> <label for="e18">18시</label>
+						<input id="e19" name="answer.end_time" value="19" type="radio" /> <label for="e19">19시</label>
+						<input id="e20" name="answer.end_time" value="20" type="radio" /> <label for="e20">20시</label>
+						<input id="e21" name="answer.end_time" value="21" type="radio" /> <label for="e21">21시</label>
+						<input id="e22" name="answer.end_time" value="22" type="radio" /> <label for="e22">22시</label>
+						<span class="switch-button"></span>
+					</fieldset>
+				</div>
 				</div>
 			</li>
 
-			<li class="slide img4"
-				style="background-image: url('img/background.jpg');">
-				<div class="info">
-					<!-- <p class="title">Maserati A6</p>
-					<p class="description">
-						<strong>1950</strong> —&#8202;2L, 120bhp
-					</p> -->
-					<h1>4page</h1>
-				</div> 
+			<li class="slide img4 "
+				style="background-color: white; ">
+				<div class="agender-many" style="margin: 11%;">
+					<div class="cc-selector">
+						<input id="one" type="radio" name="credit-card" value="10" /> <label
+							class="drinkcard-cc one" for="one"></label> <input id="two"
+							type="radio" name="credit-card" value="20" /> <label
+							class="drinkcard-cc two" for="two"></label> <input id="three"
+							type="radio" name="credit-card" value="30" /> <label
+							class="drinkcard-cc three" for="three"></label> <input id="four"
+							type="radio" name="credit-card" value="40" /> <label
+							class="drinkcard-cc four" for="four"></label>
+					</div>
+					<div class="gender">
+						<input id="male" type="radio" name="gend" value="male" /> <label
+							class="drinkgender-gd male" for="male"></label> <input
+							id="female" type="radio" name="gend" value="female" /> <label
+							class="drinkgender-gd female" for="female"></label> <input
+							id="both" type="radio" name="gend" value="both" /> <label
+							class="drinkgender-gd both" for="both"></label>
+					</div>
+
+					<div class="how-many">
+						<!-- 인원수 -->
+						<input id="hitori" type="radio" name="many" value="1"
+							onclick="div_OnOff(this.value,'con')" /> <label
+							class="drinkmany-pp hitori" for="hitori"></label> <input
+							id="hutari" type="radio" name="many" value="2"
+							onclick="div_OnOff(this.value,'con-two')" /> <label
+							class="drinkmany-pp hutari" for="hutari"></label> <input id="san"
+							type="radio" name="many" value="3"
+							onclick="div_OnOff(this.value,'con-three')" /> <label
+							class="drinkmany-pp san" for="san"></label> <input id="go"
+							type="radio" name="many" value="5"
+							onclick="div_OnOff(this.value,'con-five')" /> <label
+							class="drinkmany-pp go" for="go" style="size: 100%"></label> <input
+							id="ten" type="radio" name="many" value="10"
+							onclick="div_OnOff(this.value,'con-ten')" /> <label
+							class="drinkmany-pp ten" for="ten"></label>
+					</div>
+					<div class="many-img">
+						<div id="default" style="display: block;">
+							<img alt="기본" src="img/many-default.png" style="width: 60%;">
+						</div>
+						<div id="con" style="display: none">
+							<img alt="1명" src="img/many-one.png" style="width: 60%;">
+						</div>
+						<div id="con-two" style="display: none">
+							<img alt="2명" src="img/many-two.png" style="width: 60%;">
+						</div>
+						<div id="con-three" style="display: none;">
+							<img alt="3명" src="img/many-three.png" style="width: 60%;">
+						</div>
+						<div id="con-five" style="display: none">
+							<img alt="5명" src="img/many-five.png" style="width: 60%;">
+						</div>
+						<div id="con-ten" style="display: none">
+							<img alt="10명" src="img/many-ten.png" style="width: 60%;">
+						</div>
+					</div>
+				</div>
+
 			</li>
 
-			<li class="slide img5"
+			<!-- 추가질문 여분 슬라이드 -->
+			<!-- <li class="slide img5"
 				style="background-image: url('img/background.jpg');">
 				<div class="info">
-					<!-- <p class="title">Maserati A6</p>
-					<p class="description">
-						<strong>1950</strong> —&#8202;2L, 120bhp
-					</p> -->
+					
 					<h1>5page</h1>
 				</div>
-			</li>
+			</li> -->
 
 
 		</ul>

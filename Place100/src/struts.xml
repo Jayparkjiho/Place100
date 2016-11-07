@@ -18,9 +18,9 @@
     </action>
     
 	<!-- ajax로 로그인 요청하는 xml 태그(데이터 타입은 json입니다.) -->
-    <action name="login" class="coex.action.LoginAction" method="login">
+   <!--  <action name="login" class="coex.action.LoginAction" method="login">
     	<result type="json"/>
-    </action>
+    </action> -->
     
 	<!-- ajax로 회원 가입 시에 데이터 베이스에서 같은 아이디가 있는지 없는지를 체크하는 xml 태그(같은 아이디가 있을 시 jsp화면에 빨간줄이 뜸) -->
     <action name="idCheck" class="coex.action.LoginAction" method="idCheck">

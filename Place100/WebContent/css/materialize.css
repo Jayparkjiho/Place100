@@ -6046,8 +6046,7 @@ textarea.materialize-textarea {
   margin: 5px 15px;
 }
 
-/* Radio Buttons
-   ========================================================================== */
+/* /* Radio Buttons ========================================================================== */
 [type="radio"]:not(:checked),
 [type="radio"]:checked {
   position: absolute;
@@ -6065,7 +6064,7 @@ textarea.materialize-textarea {
   line-height: 25px;
   font-size: 1rem;
   transition: .28s ease;
-  /* webkit (konqueror) browsers */
+  webkit (konqueror) browsers
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -6085,7 +6084,7 @@ textarea.materialize-textarea {
   transition: .28s ease;
 }
 
-/* Unchecked styles */
+Unchecked styles
 [type="radio"]:not(:checked) + label:before,
 [type="radio"]:not(:checked) + label:after,
 [type="radio"]:checked + label:before,
@@ -6106,7 +6105,7 @@ textarea.materialize-textarea {
           transform: scale(0);
 }
 
-/* Checked styles */
+Checked styles
 [type="radio"]:checked + label:before {
   border: 2px solid transparent;
 }
@@ -6128,18 +6127,18 @@ textarea.materialize-textarea {
           transform: scale(1.02);
 }
 
-/* Radio With gap */
+Radio With gap
 [type="radio"].with-gap:checked + label:after {
   -webkit-transform: scale(0.5);
           transform: scale(0.5);
 }
 
-/* Focused styles */
+Focused styles
 [type="radio"].tabbed:focus + label:before {
   box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Disabled Radio With gap */
+Disabled Radio With gap
 [type="radio"].with-gap:disabled:checked + label:before {
   border: 2px solid rgba(0, 0, 0, 0.26);
 }
@@ -6149,7 +6148,7 @@ textarea.materialize-textarea {
   background-color: rgba(0, 0, 0, 0.26);
 }
 
-/* Disabled style */
+Disabled style
 [type="radio"]:disabled:not(:checked) + label:before,
 [type="radio"]:disabled:checked + label:before {
   background-color: transparent;
@@ -6167,7 +6166,7 @@ textarea.materialize-textarea {
 [type="radio"]:disabled:checked + label:after {
   background-color: rgba(0, 0, 0, 0.26);
   border-color: #BDBDBD;
-}
+} */
 
 /* Checkboxes
    ========================================================================== */
