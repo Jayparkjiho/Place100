@@ -16,84 +16,99 @@
     <action name="main">
     	<result>/index.jsp</result>
     </action>
-    
-	<!-- ajax로 로그인 요청하는 xml 태그(데이터 타입은 json입니다.) -->
-   <!--  <action name="login" class="coex.action.LoginAction" method="login">
-    	<result type="json"/>
-    </action> -->
-    
-	<!-- ajax로 회원 가입 시에 데이터 베이스에서 같은 아이디가 있는지 없는지를 체크하는 xml 태그(같은 아이디가 있을 시 jsp화면에 빨간줄이 뜸) -->
-    <action name="idCheck" class="coex.action.LoginAction" method="idCheck">
-    	<result type="json"/>
-    </action>
-    
-    <!-- 회원 가입시에 입력받은 데이타를 가지고 member객체를 생성해서 ajax명령어로 데이터에 삽입  -->
-    <action name="join" class="coex.action.LoginAction" method="insertMember">
-    	<result type="json"/>
-    </action>
-    
-    
-    
-    
     <!-- 시작하기버튼을 클릭시 다음화면(추천하기 만들기)으로 넘기는 action -->
     <action name="userCheck">
     	<result>/userSelect.jsp</result>
     </action>
     
+    <!-- 사용자에게 기호을 입력받는 페이지로 넘기는 action 태그 -->
     <action name="answerPage">
     	<result>/answer.jsp</result>
     </action>
     
+    <!-- answerpage에서 목적을 입력했을때 전시회라면 전시회의 목록을 다 가져오는 action을 시키는 ajax action tag -->
     <action name="getExhibitionList" class="coex.action.AnswerAction" method="getExhibitionList">
     	<result type="json"/>
     </action>
     
-    <!-- 스케줄 생성시 처음으로 입력받는 question1페이지로 가는 xml태그 -->
-    <action name="question1">
-    	<result>/questionForm.jsp</result>
-    </action>
-    
-    <!-- questionForm.jsp파일에서 입력받은 목적을 answer객체에 저장하고 question1-2페이지로 가는 xml태그  -->
-	<action name="question2" class="coex.action.AnswerAction" method="question2">
-    	<result name="success">/question1-2.jsp</result>
-    </action>
-    
-    <!-- question2.jsp에서 입력받은 데이터를 answer객체에 저장하고 questions3.jsp로 이동하는 xml태그  -->
-   	<action name="question3" class="coex.action.AnswerAction" method="question3">
-    	<result name="success">/question1-3.jsp</result>
-    </action>
-    
     <!-- 활동일정까지 입력받는 최종 answer객체를 만들어 데이터베이스에 저장하는 xml태그 -->
     <action name="insertAnswer" class="coex.action.AnswerAction" method="insertAnswer">
-    	<result name="success">/schedule.jsp</result>
+    	<result name="json"/>
     </action>
     
-    <action name="insertPlaceForm">
-    	<result>/insertPlaceForm.jsp</result>
-    </action>
-    
-     <action name="schedule" class="coex.action.AnswerAction" method="schedule">
-    	<result name="success">/schedule.jsp</result>
-    </action>
-    
+    <!-- 스케줄을 가져오는 xml tag -->
     <action name="getData" class="coex.action.AnswerAction" method="schedule">
     	<result type="json"></result>
     </action>
     
-    <action name="List">
-    	<result>/placeList.jsp</result>
+    <!-- ***********************************************************************************************8 -->
+    <!-- 어떻게 되어있는것인지 잘 모르겠는 부분 왜 insertAnswer따로고 schedule 명령어 따로고, getdata는 왜 메소드가 같은 건인지 -->
+<!--     
+    활동일정까지 입력받는 최종 answer객체를 만들어 데이터베이스에 저장하는 xml태그
+    <action name="insertAnswer" class="coex.action.AnswerAction" method="insertAnswer">
+    	<result name="success">/schedule.jsp</result>
     </action>
     
+    <action name="schedule" class="coex.action.AnswerAction" method="schedule">
+    	<result name="success">/schedule.jsp</result>
+    </action>
+     
+     
+    <action name="getData" class="coex.action.AnswerAction" method="schedule">
+    	<result type="json"></result>
+    </action>
+    -->
+<!--     
+	ajax로 로그인 요청하는 xml 태그(데이터 타입은 json입니다.)
+    <action name="login" class="coex.action.LoginAction" method="login">
+    	<result type="json"/>
+    </action>
+    
+	ajax로 회원 가입 시에 데이터 베이스에서 같은 아이디가 있는지 없는지를 체크하는 xml 태그(같은 아이디가 있을 시 jsp화면에 빨간줄이 뜸)
+    <action name="idCheck" class="coex.action.LoginAction" method="idCheck">
+    	<result type="json"/>
+    </action>
+    
+    회원 가입시에 입력받은 데이타를 가지고 member객체를 생성해서 ajax명령어로 데이터에 삽입 
+    <action name="join" class="coex.action.LoginAction" method="insertMember">
+    	<result type="json"/>
+    </action>
+     -->
+     
+<!--     스케줄 생성시 처음으로 입력받는 question1페이지로 가는 xml태그
+    <action name="question1">
+    	<result>/questionForm.jsp</result>
+    </action>
+    
+    questionForm.jsp파일에서 입력받은 목적을 answer객체에 저장하고 question1-2페이지로 가는 xml태그 
+	<action name="question2" class="coex.action.AnswerAction" method="question2">
+    	<result name="success">/question1-2.jsp</result>
+    </action>
+    
+    question2.jsp에서 입력받은 데이터를 answer객체에 저장하고 questions3.jsp로 이동하는 xml태그 
+   	<action name="question3" class="coex.action.AnswerAction" method="question3">
+    	<result name="success">/question1-3.jsp</result>
+    </action>
+    
+    활동일정까지 입력받는 최종 answer객체를 만들어 데이터베이스에 저장하는 xml태그
+    <action name="insertAnswer" class="coex.action.AnswerAction" method="insertAnswer">
+    	<result name="success">/schedule.jsp</result>
+    </action> -->
+    
+    <!-- <action name="insertPlaceForm">
+    	<result>/insertPlaceForm.jsp</result>
+    </action> -->
+    
+    
+
+    <!-- 상점 리스트를  불러오는 action xml tag -->
     <action name="getList" class="coex.action.PlaceAction" method="getPlaceList">
     	<result type="json"/>
     </action>
     
-    <action name="insertPlace" class="coex.action.PlaceAction" method="insertPlace">
-    	<result name="success" type="redirect">main.action</result>
-    </action>
-    
+    <!-- 상점 리스트로 가는 action xml tag -->
     <action name="placeList2">
-    	<result name="success">placeList2.jsp</result>
+    	<result>/placeList2.jsp</result>
     </action>
     
     

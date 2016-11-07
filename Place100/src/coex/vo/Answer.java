@@ -34,7 +34,7 @@ public class Answer {
 	private String answer_sthree_end;			 //3번 스케줄의 종료시간
 	private int answer_sthree_node;			 	 //3번 스케줄의 노드
 
-	public Answer( ){
+	public Answer(){
 	}
 
 	//생성자 (field와)

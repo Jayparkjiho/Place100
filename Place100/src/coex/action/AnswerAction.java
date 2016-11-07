@@ -49,64 +49,36 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 	}
 
 	/**
-	 * answer객체의 목적 데이타를 answer객체에 저장하고, session에 저장
-	 * @return 세션에 저장받은 answer객체
-	 * 
-	 */
-	public String question2(){
-		
-		session.put("purpose_no", this.answer.getAnswer_purpose_no());
-		System.out.println(session.get("purpose_no"));
-		return SUCCESS;
-	}
-	
-	/**
-	 * answer객체의 개인정보 데이타를 answer객체에 저장하고, session에 저장
-	 * @return 세션에 저장받은 answer객체
-	 */
-	public String question3(){
-		
-		session.put("answer", this.answer);
-		
-		return SUCCESS;
-	}
-	
-	/**
 	 * 새부일정을 입력받은 answer객체에 최종으로 저장하고 answer를 저장하기 위해 dao호출 한뒤 
 	 * 데이터베이스에 저장
 	 * @return
 	 */
 	public String insertAnswer(){
-		//세션에 있는 데이터를 새로운 Answer객체로 이동
-		Answer answer2 = new Answer();
-		answer2 = (Answer)session.get("answer");
-		//Answer에 데이터 합치기
-		answer.setAnswer_purpose_no((int)session.get("purpose_no"));
-		answer.setAnswer_date(answer2.getAnswer_date());
-		answer.setAnswer_start_time(answer2.getAnswer_start_time());
-		answer.setAnswer_end_time(answer2.getAnswer_end_time());
-		answer.setAnswer_sex(answer2.getAnswer_sex());
-		answer.setAnswer_age(answer2.getAnswer_age());
-		answer.setAnswer_head_count(answer2.getAnswer_head_count());
-		answer.setAnswer_traffic(answer2.getAnswer_traffic());
-		answer.setAnswer_meal(answer2.getAnswer_meal());
-		ScheRecomm scheRecom = new ScheRecomm();
+		System.out.println("insertAnswer()메소드 실행");
+		System.out.println(answer);
+		AnswerDAO dao = new AnswerDAO();
+		dao.insertAnswer(answer);
+		/*ScheRecomm scheRecom = new ScheRecomm();
 		Schedule newSche = scheRecom.ansToSche(answer, "익명");
 		scheRecom.scheduleRecomm(answer, newSche, newSche.getSchedule_start_time(), newSche.getSchedule_end_time());
 		System.out.println(newSche.toString());
 		ScheduleDAO sdao = new ScheduleDAO();
 		sdao.insertSchedule(newSche);
 		
-		this.session.put("Schedule_no", sdao.getLastNo());
+		this.session.put("Schedule_no", sdao.getLastNo());*/
 		return SUCCESS;
 	}
 	
-	//스케줄 테스트
+	/**
+	 * @author JayPark
+	 * schedule에 대한 정보를 화면에 뿌려줄때 사용하는 xml tag
+	 * @return
+	 */
 	public String schedule(){
 		int schedule_no = (int)session.get("Schedule_no");
 		ScheduleDAO dao = new ScheduleDAO();
 		schedule = dao.findSchedule(schedule_no);
-		System.out.println("찾아온 스케줄 : "+schedule.toString());
+		System.out.println("찾아온 스케줄222 : "+schedule.toString());
 		eventList = schedule.getSchedule_event_list().split(",");
 		startTimeList = schedule.getSchedule_time_list().split(",");
 		PlaceDAO placeDao = new PlaceDAO();
@@ -119,8 +91,30 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 		return SUCCESS;
 	}
 	
-	//user단에서 스케줄에 대한 문자서비스를  받을지 안받을지에 대한 확인 메소드
+	/**
+	 * @author JayPark
+	 * client단에서 스케줄에 대한 문자 서비스를 요청할 경우 메세지를 보내주는 xml tag
+	 * @return
+	 */
 	public String sendSms(){
+		System.out.println("sendSms()메소드 실행");
+		
+		int schedule_no = (int)session.get("Schedule_no");
+		ScheduleDAO dao = new ScheduleDAO();
+		schedule = dao.findSchedule(schedule_no);
+		System.out.println(schedule);
+		eventList = schedule.getSchedule_event_list().split(",");
+		startTimeList = schedule.getSchedule_time_list().split(",");
+		PlaceDAO placeDao = new PlaceDAO();
+		for (int i = 0; i < eventList.length; i++) {
+			place = placeDao.findPlace(Integer.parseInt(eventList[i]));
+			placeList.add(place);
+			timeList.add(startTimeList[i]);
+		}
+		System.out.println("schedule객체 : " + schedule);
+		System.out.println("placeList리스트 : " + placeList);
+		System.out.println(phone_num);
+		
 		Calendar c = new GregorianCalendar();
 		Alarm a = new Alarm();
 		
@@ -156,9 +150,11 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 		System.out.println(lastPlace.toString());
 		
 		a.setNumber(phone_num);
-		a.setDay("16/11/02");
+		a.setDay(schedule.getSchedule_date());
 		a.setTimes(lastTime);
 		a.setPlaces(lastPlace);
+		
+		System.out.println(a.toString());
 		
 		AlarmClock ac = new AlarmClock();
 		ac.checkAlarm(a);
@@ -166,6 +162,7 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 	}
 
 	/**
+	 * @author JayPark
 	 * 문자 메세지를 보내줄 시간의 10분을 빼기 위한 메소드
 	 * @param time
 	 * @return 전송시간
@@ -188,7 +185,7 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 			}
 		}
 		
-		if (hour > 12) {
+		if (hour >= 12) {
 			hour = hour - 12;
 		}
 		tt = "" + hour + ":" + min;
@@ -200,6 +197,14 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 	
 	
 	
+
+	public String getPhone_num() {
+		return phone_num;
+	}
+
+	public void setPhone_num(String phone_num) {
+		this.phone_num = phone_num;
+	}
 
 	public ArrayList<Place> getPlaceList() {
 		return placeList;

@@ -16,6 +16,7 @@ public class AnswerDAO {
 	 * @param answer
 	 */
 	public void insertAnswer(Answer answer){
+		System.out.println("insertAnswer()DAO method 실행");
 		try{
 			sqlSession = sqlSessionFactory.openSession();
 			sqlSession.insert("AnswerMapper.insertAnswer", answer);
