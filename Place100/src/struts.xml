@@ -59,6 +59,12 @@
     <action name="map" class="coex.action.AnswerAction" method="paintMap">
     	<result name="success">/map.jsp</result>
     </action>
+    
+     <!-- 스스로 만드는 스케줄 -->
+    <action name="myself-schedule">
+    	<result name="success">/myself-schedule.jsp</result>
+    </action>
+    
     <!-- ***********************************************************************************************8 -->
     <!-- 어떻게 되어있는것인지 잘 모르겠는 부분 왜 insertAnswer따로고 schedule 명령어 따로고, getdata는 왜 메소드가 같은 건인지 -->
 <!--     

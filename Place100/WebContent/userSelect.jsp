@@ -56,7 +56,7 @@ height: 70%;
 		</div>
 
 		<div class="right-box" style="border-left: 1px solid black;">
-			<a href="#"><h2 style="text-align: center;">
+			<a href="myself-schedule.action"><h2 style="text-align: center;">
 					내가 <br> 직접짜기
 				</h2>
 				<p>직접짜라</p> <!-- <img alt="image" src="img/else.png"> --> </a>
