@@ -10,7 +10,7 @@
 
   .white {
     background-color: #FFFFFF !important;
-}
+} 
 * {margin:0;padding:0;}
 nav {
     color: #fff;
