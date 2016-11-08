@@ -149,9 +149,7 @@ $(document).ready(function() {
 	  
 	  
 	  var date = year+"-"+(month+1) + "-" + $(this).html();
-	  alert(date);
 	  answer_date = date;
-	  alert(answer_date);
 	  
 	  
 	  var outputDate = monthTextArray[month] + " " + $(this).html() +", " + year;

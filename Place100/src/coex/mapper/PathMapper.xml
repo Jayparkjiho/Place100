@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PathMapper">
+	<select id="select" parameterType="map" resultType="String">
+		select path_path from coex_path_tb where path_from_node_no = #{from} and path_to_node_no = #{to}
+	</select>
+
+</mapper>

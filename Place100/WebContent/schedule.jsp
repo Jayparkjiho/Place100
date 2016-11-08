@@ -375,6 +375,7 @@ left: 35%;
 				<div class="board-footer">
 					<a class="btn btn-default btn-outline btn-circle collapsed" href="main.action" >메인화면 돌아가기</a>
 					<a class="btn btn-default btn-outline btn-circle collapsed" id="Sms_btn">일정 알림</a>
+					<a class="btn btn-default btn-outline btn-circle collapsed" id="map_btn" href="map.action">지도에서 보기</a>
 				</div>
 			</div>
 			

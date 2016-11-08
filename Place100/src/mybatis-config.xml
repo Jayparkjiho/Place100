@@ -38,6 +38,7 @@
 		<mapper resource="coex/mapper/DijkstraMapper.xml"/>
 		<mapper resource="coex/mapper/ActionMapper.xml"/>
 		<mapper resource="coex/mapper/PlaceAndPrefMapper.xml"/>
+		<mapper resource="coex/mapper/PathMapper.xml"/>
 	</mappers>
 	
 </configuration>

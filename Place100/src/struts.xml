@@ -55,6 +55,10 @@
     	<result name="success" type="redirect">schedule.action</result>
     </action>
     
+    <!-- 지도로 보여주는 action -->
+    <action name="map" class="coex.action.AnswerAction" method="paintMap">
+    	<result name="success">/map.jsp</result>
+    </action>
     <!-- ***********************************************************************************************8 -->
     <!-- 어떻게 되어있는것인지 잘 모르겠는 부분 왜 insertAnswer따로고 schedule 명령어 따로고, getdata는 왜 메소드가 같은 건인지 -->
 <!--     

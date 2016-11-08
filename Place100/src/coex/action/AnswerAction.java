@@ -11,9 +11,11 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import coex.dao.ActionDAO;
 import coex.dao.AnswerDAO;
+import coex.dao.PathDAO;
 import coex.dao.PlaceDAO;
 import coex.dao.ScheduleDAO;
 import coex.util.AlarmClock;
+import coex.util.CoexMap;
 import coex.util.ScheRecomm;
 import coex.vo.Action;
 import coex.vo.Alarm;
@@ -23,16 +25,17 @@ import coex.vo.Schedule;
 
 public class AnswerAction extends ActionSupport implements SessionAware {
 	
-	Answer answer;
-	Map<String,Object> session;
-	Schedule schedule;
-	String[] eventList;
-	String[] startTimeList;	
-	String phone_num;
-	ArrayList<Place> placeList = new ArrayList<>();
-	Place place;
-	ArrayList<String> timeList = new ArrayList<>();
-	ArrayList<Action> actionList = new ArrayList<>();
+	private Answer answer;
+	private Map<String,Object> session;
+	private Schedule schedule;
+	private String[] eventList;
+	private String[] startTimeList;	
+	private String phone_num;
+	private ArrayList<Place> placeList = new ArrayList<>();
+	private Place place;
+	private ArrayList<String> timeList = new ArrayList<>();
+	private ArrayList<Action> actionList = new ArrayList<>();
+	private String totalPath; 
 	
 	/**
 	 * 입력받은 방문 목적이 전시회일때 전시회에 관련된 action객체 list를 db에서
@@ -193,11 +196,58 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 		System.out.println(tt);
 		return tt;
 	}
+	public String paintMap(){
+		int schedule_no = (int)session.get("Schedule_no");
+		String str ="";
+		String node ="";
+		CoexMap map = new CoexMap();
+		ScheduleDAO dao = new ScheduleDAO();
+		Schedule sche = dao.findSchedule(schedule_no);
+		
+		String nodeList = sche.getSchedule_node_list();
+		String [] nodelist = nodeList.split(",");
+		System.out.println("끝"+nodelist[nodelist.length-1]);
+		for (int i = 0; i < nodelist.length; i++) {
+			PathDAO paDao = new PathDAO();
+			if(i == nodelist.length-1){
+				break;
+			}else{
+			str = paDao.findSchedule(Integer.parseInt(nodelist[i]), Integer.parseInt(nodelist[i+1]))+"->";
+			System.out.println(str);
+			node += map.nodeToXY(str);
+			System.out.println(node);
+			System.out.println("찍?");
+						}
+		}
+		if (node.endsWith(",")) {
+			System.out.println("끝");
+		  node= node.substring(0, node.length()-1);
+		}
+		System.out.println(node);
+		totalPath = node;
+		
+		return SUCCESS;
+	}
 	
 	
 	
 	
-	
+
+	public Place getPlace() {
+		return place;
+	}
+
+	public void setPlace(Place place) {
+		this.place = place;
+	}
+
+	public String getTotalPath() {
+		return totalPath;
+	}
+
+	public void setTotalPath(String totalPath) {
+		this.totalPath = totalPath;
+	}
 
 	public String getPhone_num() {
 		return phone_num;
