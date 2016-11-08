@@ -58,14 +58,15 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 		System.out.println(answer);
 		AnswerDAO dao = new AnswerDAO();
 		dao.insertAnswer(answer);
-		/*ScheRecomm scheRecom = new ScheRecomm();
+		System.out.println("입력끝");
+		ScheRecomm scheRecom = new ScheRecomm();
 		Schedule newSche = scheRecom.ansToSche(answer, "익명");
 		scheRecom.scheduleRecomm(answer, newSche, newSche.getSchedule_start_time(), newSche.getSchedule_end_time());
 		System.out.println(newSche.toString());
 		ScheduleDAO sdao = new ScheduleDAO();
 		sdao.insertSchedule(newSche);
 		
-		this.session.put("Schedule_no", sdao.getLastNo());*/
+		this.session.put("Schedule_no", sdao.getLastNo());
 		return SUCCESS;
 	}
 	

@@ -48,7 +48,7 @@
       </div>
    </div>
    <div class="row center">
-       <a class="ghost-button" href="userCheck" style="margin-top: 13%;">시작하기</a>
+       <a class="ghost-button" href="userCheck">시작하기</a>
    </div>
 
 

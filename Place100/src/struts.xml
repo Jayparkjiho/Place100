@@ -33,12 +33,26 @@
     
     <!-- 활동일정까지 입력받는 최종 answer객체를 만들어 데이터베이스에 저장하는 xml태그 -->
     <action name="insertAnswer" class="coex.action.AnswerAction" method="insertAnswer">
-    	<result name="json"/>
+    	<result type="json"/>
+    </action>
+    
+    <action name="schedule" class="coex.action.AnswerAction" method="schedule">
+    	<result name="success">/schedule.jsp</result>
     </action>
     
     <!-- 스케줄을 가져오는 xml tag -->
     <action name="getData" class="coex.action.AnswerAction" method="schedule">
-    	<result type="json"></result>
+    	<result type="json"/>
+    </action>
+    
+    <!-- sms전화번호 받을 페이지 보내기 -->
+    <action name="pop">
+    	<result>/pop.jsp</result>
+    </action>
+    
+    <!-- 문자 보낼때 사용하는 xml tag client화면으로부터 핸드폰번호를 입력받은 것을 action으로 넘김 -->
+    <action name="sendSms" class="coex.action.AnswerAction" method="sendSms">
+    	<result name="success" type="redirect">schedule.action</result>
     </action>
     
     <!-- ***********************************************************************************************8 -->

@@ -148,8 +148,11 @@ $(document).ready(function() {
 	  //$(this).parent().addClass("circle");
 	  
 	  
-	  date = year+"-"+(month+1) + "-" + $(this).html();
+	  var date = year+"-"+(month+1) + "-" + $(this).html();
+	  alert(date);
 	  answer_date = date;
+	  alert(answer_date);
+	  
 	  
 	  var outputDate = monthTextArray[month] + " " + $(this).html() +", " + year;
 	  console.log(outputDate);
@@ -258,7 +261,7 @@ $(document).ready(function() {
 					},
 			dataType:'json',
 			success:function(response){
-				window.location.href="getData.action"
+				location.href="schedule.action";
 			}
 		});//ajax 종료
 	});
@@ -442,19 +445,19 @@ $(document).ready(function() {
 				<div class="spaceEmOut">
 					<fieldset class="switch switch-five">
 						<legend>시작시간</legend>
-						<input id="s10" name="answer.start_time" value="10" type="radio" checked /> <label for="s10">10시</label>
-						<input id="s11" name="answer.start_time" value="11" type="radio" /> <label for="s11">11시</label>
-						<input id="s12" name="answer.start_time" value="12" type="radio" /> <label for="s12">12시</label>
-						<input id="s13" name="answer.start_time" value="13" type="radio" /> <label for="s13">13시</label>
-						<input id="s14" name="answer.start_time" value="14" type="radio" /> <label for="s14">14시</label>
-						<input id="s15" name="answer.start_time" value="15" type="radio" /> <label for="s15">15시</label>
-						<input id="s16" name="answer.start_time" value="16" type="radio" /> <label for="s16">16시</label>
-						<input id="s17" name="answer.start_time" value="17" type="radio" /> <label for="s17">17시</label>
-						<input id="s18" name="answer.start_time" value="18" type="radio" /> <label for="s18">18시</label>
-						<input id="s19" name="answer.start_time" value="19" type="radio" /> <label for="s19">19시</label>
-						<input id="s20" name="answer.start_time" value="20" type="radio" /> <label for="s20">20시</label>
-						<input id="s21" name="answer.start_time" value="21" type="radio" /> <label for="s21">21시</label>
-						<input id="s22" name="answer.start_time" value="22" type="radio" /> <label for="s22">22시</label>
+						<input id="s10" name="answer.start_time" value="10:00" type="radio" checked /> <label for="s10">10시</label>
+						<input id="s11" name="answer.start_time" value="11:00" type="radio" /> <label for="s11">11시</label>
+						<input id="s12" name="answer.start_time" value="12:00" type="radio" /> <label for="s12">12시</label>
+						<input id="s13" name="answer.start_time" value="13:00" type="radio" /> <label for="s13">13시</label>
+						<input id="s14" name="answer.start_time" value="14:00" type="radio" /> <label for="s14">14시</label>
+						<input id="s15" name="answer.start_time" value="15:00" type="radio" /> <label for="s15">15시</label>
+						<input id="s16" name="answer.start_time" value="16:00" type="radio" /> <label for="s16">16시</label>
+						<input id="s17" name="answer.start_time" value="17:00" type="radio" /> <label for="s17">17시</label>
+						<input id="s18" name="answer.start_time" value="18:00" type="radio" /> <label for="s18">18시</label>
+						<input id="s19" name="answer.start_time" value="19:00" type="radio" /> <label for="s19">19시</label>
+						<input id="s20" name="answer.start_time" value="20:00" type="radio" /> <label for="s20">20시</label>
+						<input id="s21" name="answer.start_time" value="21:00" type="radio" /> <label for="s21">21시</label>
+						<input id="s22" name="answer.start_time" value="22:00" type="radio" /> <label for="s22">22시</label>
 						<span class="switch-button"></span>
 					</fieldset>
 				</div>
@@ -463,19 +466,19 @@ $(document).ready(function() {
 				<div class="spaceEmOut">
 					<fieldset class="switch switch-five2">
 						<legend>종료시간</legend>
-						<input id="e10" name="answer.end_time" value="10" type="radio" checked /> <label for="e10">10시</label>
-						<input id="e11" name="answer.end_time" value="11" type="radio" /> <label for="e11">11시</label>
-						<input id="e12" name="answer.end_time" value="12" type="radio" /> <label for="e12">12시</label>
-						<input id="e13" name="answer.end_time" value="13" type="radio" /> <label for="e13">13시</label>
-						<input id="e14" name="answer.end_time" value="14" type="radio" /> <label for="e14">14시</label>
-						<input id="e15" name="answer.end_time" value="15" type="radio" /> <label for="e15">15시</label>
-						<input id="e16" name="answer.end_time" value="16" type="radio" /> <label for="e16">16시</label>
-						<input id="e17" name="answer.end_time" value="17" type="radio" /> <label for="e17">17시</label>
-						<input id="e18" name="answer.end_time" value="18" type="radio" /> <label for="e18">18시</label>
-						<input id="e19" name="answer.end_time" value="19" type="radio" /> <label for="e19">19시</label>
-						<input id="e20" name="answer.end_time" value="20" type="radio" /> <label for="e20">20시</label>
-						<input id="e21" name="answer.end_time" value="21" type="radio" /> <label for="e21">21시</label>
-						<input id="e22" name="answer.end_time" value="22" type="radio" /> <label for="e22">22시</label>
+						<input id="e10" name="answer.end_time" value="10:00" type="radio" checked /> <label for="e10">10시</label>
+						<input id="e11" name="answer.end_time" value="11:00" type="radio" /> <label for="e11">11시</label>
+						<input id="e12" name="answer.end_time" value="12:00" type="radio" /> <label for="e12">12시</label>
+						<input id="e13" name="answer.end_time" value="13:00" type="radio" /> <label for="e13">13시</label>
+						<input id="e14" name="answer.end_time" value="14:00" type="radio" /> <label for="e14">14시</label>
+						<input id="e15" name="answer.end_time" value="15:00" type="radio" /> <label for="e15">15시</label>
+						<input id="e16" name="answer.end_time" value="16:00" type="radio" /> <label for="e16">16시</label>
+						<input id="e17" name="answer.end_time" value="17:00" type="radio" /> <label for="e17">17시</label>
+						<input id="e18" name="answer.end_time" value="18:00" type="radio" /> <label for="e18">18시</label>
+						<input id="e19" name="answer.end_time" value="19:00" type="radio" /> <label for="e19">19시</label>
+						<input id="e20" name="answer.end_time" value="20:00" type="radio" /> <label for="e20">20시</label>
+						<input id="e21" name="answer.end_time" value="21:00" type="radio" /> <label for="e21">21시</label>
+						<input id="e22" name="answer.end_time" value="22:00" type="radio" /> <label for="e22">22시</label>
 						<span class="switch-button"></span>
 					</fieldset>
 				</div>
@@ -545,7 +548,7 @@ $(document).ready(function() {
 					
 					
 					<div class="row center">
-       					<a class="ghost-button" id="btn_answer_ok" style="margin-top: 13%;">제출하기</a>
+       					<a class="ghost-button" id="btn_answer_ok">제출하기</a>
    					</div>
 				</div>
 

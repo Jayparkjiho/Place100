@@ -477,6 +477,7 @@ public class ScheRecomm {
 	 */
 	public int checkTimeDiff(String firstTime, String secondTime) {
 		int result = 0;
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
 		try {
 			Date firstDate = formatter.parse(firstTime);
