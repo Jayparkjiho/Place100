@@ -28,7 +28,7 @@
 }
 </style>
 <title>코엑스 100배 즐기기</title>
-
+<!-- 새로 작성될 예정  -->
 </head>
 <body>
 <jsp:include page="header.jsp" flush="false"/>
