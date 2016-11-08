@@ -22,52 +22,58 @@ width: 100%;
 //해당 썸네일에 마우스가 올라가면 옆에 정보를 띄워준다.
 
 var a = 350;
-/* var arr = [89,468,126,436,216,429,366,265,509,324,520,146,672,156,680,205,666,262,777,267,776,368,834,371,937,369,946,334,971,373,1029,374,1032,497]; */
 var imgLocationArr = [355,262,222,555];
 var totalPath = '${totalPath}';
+var imageList = '${imageList}'.split(",");
 var paths = totalPath.split("#");
 var path;
 console.log(paths);
 var pathCount = paths.length-1;
 var clkCnt =0;
-alert(pathCount);
+alert('총 경로의 수:'+pathCount);
+console.log(imageList);
 </script>
 </head>
 <body>
-
 <script type="text/processing" data-processing-target="pjs">
-PImage b;
-PImage img2;
+
+PImage[] imgs = new PImage[pathCount];
+for(var i = 0; i<pathCount;i++){
+	imgs[i] = loadImage(imageList[i]);
+}
 
 void setup() {
   size(1200, 1200);
   smooth();
   b = loadImage("img/map.png");
-  img2 = loadImage("img/image2.jpg");
-
-
  }
 
  void draw() //초당 60번 자동 반복되는 메쏘드
 {
   background(255);
   image(b, 0, 0);
-	noLoop();
+  noLoop();
 }
-mouseClicked = function(){
-draw();
+
+ mouseClicked = function(){
+	draw();
 	path = paths[clkCnt].split(",");
-  stroke(244,66,197);
-  strokeWeight(4);
-  for(var i = 0; i+3 <path.length();i+=2){
+  	stroke(244,66,197);
+  	strokeWeight(4);
+  	for(var i = 0; i+3 <path.length();i+=2){
 	line(path[i]-20,path[i+1]-10,path[i+2]-20,path[i+3]-10);
 	ellipse(path[i]-20,path[i+1]-10,15,15);
 	text(i/2+1,path[i]+10,path[i+1]);
 	fill(0,0,0);
   }
+	if(imgs[clkCnt]!=null){
+		imgs[clkCnt].resize(200,200);
+		image(imgs[clkCnt],900,37);
+	}
 	fill(123,243,89);
-  ellipse(path[path.length-3]-20,path[path.length-2]-10,15,15);
+  	ellipse(path[path.length-3]-20,path[path.length-2]-10,15,15);
 	textSize(70);
+
 if(clkCnt < path.length-1){
   text(clkCnt+1+"번째 경로",850,300);
 }

@@ -36,6 +36,7 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 	private ArrayList<String> timeList = new ArrayList<>();
 	private ArrayList<Action> actionList = new ArrayList<>();
 	private String totalPath; 
+	private String imageList;
 	
 	/**
 	 * 입력받은 방문 목적이 전시회일때 전시회에 관련된 action객체 list를 db에서
@@ -226,12 +227,23 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 		System.out.println(node);
 		totalPath = node;
 		
+		imageList = sche.getSchedule_img_list();
+		
+		
 		return SUCCESS;
 	}
 	
 	
 	
 	
+
+	public String getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(String imageList) {
+		this.imageList = imageList;
+	}
 
 	public Place getPlace() {
 		return place;

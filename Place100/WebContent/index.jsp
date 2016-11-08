@@ -4,15 +4,13 @@
 <html>
 <head>
 <style type="text/css">
-.content{
-   height: 50%;
-}
+
 .ghost-button {
   display: inline-block;
   width: 200px;
   padding: 8px;
-  color: black;
-  border: 2px solid black;
+  color: #039be5;
+  border: 2px solid #039be5;
   text-align: center;
   outline: none;
   text-decoration: none;
@@ -21,43 +19,37 @@
 }
 .ghost-button:hover,
 .ghost-button:active {
-  background-color: black;
+  background-color: #039be5;
   color: white;
   transition: background-color 0.3s ease-in,
               color 0.3s ease-in;
 }
+.ghost{
+position: absolute;
+	margin-top: 30%;
+	margin-left: 42%;
+}
+
+html { 
+  background: url("img/coex-main-another.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover; 
+}
 </style>
 <title>코엑스 100배 즐기기</title>
-<!-- 새로 작성될 예정  -->
+
 </head>
 <body>
 <jsp:include page="header.jsp" flush="false"/>
 
-   <div class="parallax">
-      <img src="img/coex-main-another.jpg" alt="Unsplashed background img 1">
-   </div>
-
-   <div id="index-banner" class="parallax-container">
-      <div class="section no-pad-bot">
-         <div class="container">
-            <br> <br>
-
-            <br> <br>
-
-         </div>
+   <div class="parallax" >
+   <div class="ghost">
+       <a class="ghost-button" href="userCheck.action"><strong>시작하기</strong></a>
       </div>
    </div>
-   <div class="row center">
-       <a class="ghost-button" href="userCheck">시작하기</a>
-   </div>
-
-
-
    <!--  Scripts-->
    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-   <script src="js/materialize.js"></script>
-   <script src="js/init.js"></script>
-
-
 </body>
 </html>

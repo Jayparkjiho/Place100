@@ -122,10 +122,10 @@ ul {
 <body>
     	<nav class="white" role="navigation">
     <div class="nav-wrap logging">
-      <a id="logo-container" href="main.action" class="brand-logo">Logo</a>
+      <a id="logo-container" href="main.action" class="brand-logo">Coex100</a>
       
      <ul class="right hide-on-med-and-down">
-		<li><a data-activates="nav-mobile" href="#" class="fark">menu</a></li>
+		<li><a data-activates="nav-mobile" href="answerPage.action" class="fark">menu</a></li>
       </ul>
     </div>
   </nav>
