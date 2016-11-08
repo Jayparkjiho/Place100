@@ -80,6 +80,40 @@ public class Preference {
 		this.pref_21_22 = pref_21_22;
 	}
 
+	//2개의 pref 값을 합치는 방법
+	public void sumPreference(Preference pref2){
+		this.pref_10+=pref2.getPref_10(); 	
+		this.pref_20+=pref2.getPref_20();	
+		this.pref_30+=pref2.getPref_30();	
+		this.pref_40+=pref2.getPref_40();	
+		this.pref_male+=pref2.getPref_male();	
+		this.pref_female+=pref2.getPref_female();
+		this.pref_conference+=pref2.getPref_conference();
+		this.pref_shopping+=pref2.getPref_shopping();
+		this.pref_date+=pref2.getPref_date();
+		this.pref_meal+=pref2.getPref_meal();
+		this.pref_culture+=pref2.getPref_culture();
+		this.pref_etc+=pref2.getPref_etc();
+		this.pref_single+=pref2.getPref_single();
+		this.pref_two+=pref2.getPref_two();
+		this.pref_three+=pref2.getPref_three();
+		this.pref_four+=pref2.getPref_four();
+		this.pref_five+=pref2.getPref_five();
+		this.pref_ten+=pref2.getPref_ten();
+		this.pref_10_11+=pref2.getPref_10_11();
+		this.pref_11_12+=pref2.getPref_11_12();
+		this.pref_12_13+=pref2.getPref_12_13();
+		this.pref_13_14+=pref2.getPref_13_14();
+		this.pref_14_15+=pref2.getPref_14_15();
+		this.pref_15_16+=pref2.getPref_15_16();
+		this.pref_16_17+=pref2.getPref_16_17();
+		this.pref_17_18+=pref2.getPref_17_18();
+		this.pref_18_19+=pref2.getPref_18_19();
+		this.pref_19_20+=pref2.getPref_19_20();
+		this.pref_20_21+=pref2.getPref_20_21();
+		this.pref_21_22+=pref2.getPref_21_22();
+	}
+	
 	public int getPref_no() {
 		return pref_no;
 	}
@@ -95,6 +129,10 @@ public class Preference {
 	public void setPref_10(int pref_10) {
 		this.pref_10 = pref_10;
 	}
+	
+	public void incPref_10(){
+		this.pref_10++;
+	}
 
 	public int getPref_20() {
 		return pref_20;
@@ -104,12 +142,20 @@ public class Preference {
 		this.pref_20 = pref_20;
 	}
 
+	public void incPref_20(){
+		this.pref_20++;
+	}
+	
 	public int getPref_30() {
 		return pref_30;
 	}
 
 	public void setPref_30(int pref_30) {
 		this.pref_30 = pref_30;
+	}
+	
+	public void incPref_30(){
+		this.pref_30++;
 	}
 
 	public int getPref_40() {
@@ -119,6 +165,10 @@ public class Preference {
 	public void setPref_40(int pref_40) {
 		this.pref_40 = pref_40;
 	}
+	
+	public void incPref_40(){
+		this.pref_10++;
+	}
 
 	public int getPref_male() {
 		return pref_male;
@@ -126,6 +176,10 @@ public class Preference {
 
 	public void setPref_male(int pref_male) {
 		this.pref_male = pref_male;
+	}
+	
+	public void incPref_male(){
+		this.pref_male++;
 	}
 
 	public int getPref_female() {
@@ -135,6 +189,10 @@ public class Preference {
 	public void setPref_female(int pref_female) {
 		this.pref_female = pref_female;
 	}
+	
+	public void incPref_female(){
+		this.pref_female++;
+	}
 
 	public int getPref_conference() {
 		return pref_conference;
@@ -142,6 +200,10 @@ public class Preference {
 
 	public void setPref_conference(int pref_conference) {
 		this.pref_conference = pref_conference;
+	}
+	
+	public void incPref_conference(){
+		this.pref_conference++;
 	}
 
 	public int getPref_shopping() {
@@ -151,6 +213,10 @@ public class Preference {
 	public void setPref_shopping(int pref_shopping) {
 		this.pref_shopping = pref_shopping;
 	}
+	
+	public void incPref_shopping(){
+		this.pref_shopping++;
+	}
 
 	public int getPref_date() {
 		return pref_date;
@@ -158,6 +224,10 @@ public class Preference {
 
 	public void setPref_date(int pref_date) {
 		this.pref_date = pref_date;
+	}
+	
+	public void incPref_date(){
+		this.pref_date++;
 	}
 
 	public int getPref_meal() {
@@ -167,6 +237,10 @@ public class Preference {
 	public void setPref_meal(int pref_meal) {
 		this.pref_meal = pref_meal;
 	}
+	
+	public void incPref_meal(){
+		this.pref_meal++;
+	}
 
 	public int getPref_culture() {
 		return pref_culture;
@@ -174,6 +248,10 @@ public class Preference {
 
 	public void setPref_culture(int pref_culture) {
 		this.pref_culture = pref_culture;
+	}
+	
+	public void incPref_culture(){
+		this.pref_culture++;
 	}
 
 	public int getPref_etc() {
@@ -183,6 +261,10 @@ public class Preference {
 	public void setPref_etc(int pref_etc) {
 		this.pref_etc = pref_etc;
 	}
+	
+	public void incPref_etc(){
+		this.pref_etc++;
+	}
 
 	public int getPref_single() {
 		return pref_single;
@@ -190,6 +272,10 @@ public class Preference {
 
 	public void setPref_single(int pref_single) {
 		this.pref_single = pref_single;
+	}
+	
+	public void incPref_single(){
+		this.pref_single++;
 	}
 
 	public int getPref_two() {
@@ -199,6 +285,10 @@ public class Preference {
 	public void setPref_two(int pref_two) {
 		this.pref_two = pref_two;
 	}
+	
+	public void incPref_two(){
+		this.pref_two++;
+	}
 
 	public int getPref_three() {
 		return pref_three;
@@ -206,6 +296,10 @@ public class Preference {
 
 	public void setPref_three(int pref_three) {
 		this.pref_three = pref_three;
+	}
+	
+	public void incPref_three(){
+		this.pref_three++;
 	}
 
 	public int getPref_four() {
@@ -215,6 +309,10 @@ public class Preference {
 	public void setPref_four(int pref_four) {
 		this.pref_four = pref_four;
 	}
+	
+	public void incPref_four(){
+		this.pref_four++;
+	}
 
 	public int getPref_five() {
 		return pref_five;
@@ -222,6 +320,10 @@ public class Preference {
 
 	public void setPref_five(int pref_five) {
 		this.pref_five = pref_five;
+	}
+	
+	public void incPref_five(){
+		this.pref_five++;
 	}
 
 	public int getPref_ten() {
@@ -231,6 +333,10 @@ public class Preference {
 	public void setPref_ten(int pref_ten) {
 		this.pref_ten = pref_ten;
 	}
+	
+	public void incPref_ten(){
+		this.pref_ten++;
+	}
 
 	public int getPref_10_11() {
 		return pref_10_11;
@@ -238,6 +344,10 @@ public class Preference {
 
 	public void setPref_10_11(int pref_10_11) {
 		this.pref_10_11 = pref_10_11;
+	}
+	
+	public void incPref_10_11(){
+		this.pref_10_11++;
 	}
 
 	public int getPref_11_12() {
@@ -247,6 +357,10 @@ public class Preference {
 	public void setPref_11_12(int pref_11_12) {
 		this.pref_11_12 = pref_11_12;
 	}
+	
+	public void incPref_11_12(){
+		this.pref_11_12++;
+	}
 
 	public int getPref_12_13() {
 		return pref_12_13;
@@ -254,6 +368,10 @@ public class Preference {
 
 	public void setPref_12_13(int pref_12_13) {
 		this.pref_12_13 = pref_12_13;
+	}
+	
+	public void incPref_12_13(){
+		this.pref_12_13++;
 	}
 
 	public int getPref_13_14() {
@@ -263,6 +381,10 @@ public class Preference {
 	public void setPref_13_14(int pref_13_14) {
 		this.pref_13_14 = pref_13_14;
 	}
+	
+	public void incPref_13_14(){
+		this.pref_13_14++;
+	}
 
 	public int getPref_14_15() {
 		return pref_14_15;
@@ -270,6 +392,10 @@ public class Preference {
 
 	public void setPref_14_15(int pref_14_15) {
 		this.pref_14_15 = pref_14_15;
+	}
+	
+	public void incPref_14_15(){
+		this.pref_14_15++;
 	}
 
 	public int getPref_15_16() {
@@ -279,6 +405,10 @@ public class Preference {
 	public void setPref_15_16(int pref_15_16) {
 		this.pref_15_16 = pref_15_16;
 	}
+	
+	public void incPref_15_16(){
+		this.pref_15_16++;
+	}
 
 	public int getPref_16_17() {
 		return pref_16_17;
@@ -286,6 +416,10 @@ public class Preference {
 
 	public void setPref_16_17(int pref_16_17) {
 		this.pref_16_17 = pref_16_17;
+	}
+	
+	public void incPref_16_17(){
+		this.pref_16_17++;
 	}
 
 	public int getPref_17_18() {
@@ -295,6 +429,10 @@ public class Preference {
 	public void setPref_17_18(int pref_17_18) {
 		this.pref_17_18 = pref_17_18;
 	}
+	
+	public void incPref_17_18(){
+		this.pref_17_18++;
+	}
 
 	public int getPref_18_19() {
 		return pref_18_19;
@@ -303,6 +441,10 @@ public class Preference {
 	public void setPref_18_19(int pref_18_19) {
 		this.pref_18_19 = pref_18_19;
 	}
+	
+	public void incPref_18_19(){
+		this.pref_18_19++;
+	}
 
 	public int getPref_19_20() {
 		return pref_19_20;
@@ -310,6 +452,10 @@ public class Preference {
 
 	public void setPref_19_20(int pref_19_20) {
 		this.pref_19_20 = pref_19_20;
+	}
+	
+	public void incPref_19_20(){
+		this.pref_19_20++;
 	}
 
 	public int getPref_20_21() {
@@ -320,12 +466,20 @@ public class Preference {
 		this.pref_20_21 = pref_20_21;
 	}
 
+	public void incPref_20_21(){
+		this.pref_20_21++;
+	}
+	
 	public int getPref_21_22() {
 		return pref_21_22;
 	}
 
 	public void setPref_21_22(int pref_21_22) {
 		this.pref_21_22 = pref_21_22;
+	}
+	
+	public void incPref_21_22(){
+		this.pref_21_22++;
 	}
 
 	@Override

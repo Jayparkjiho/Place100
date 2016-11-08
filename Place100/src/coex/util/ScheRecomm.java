@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.TimeZone;
 
 import javax.print.event.PrintEvent;
@@ -25,6 +26,7 @@ import coex.dao.PreferenceDAO;
 import coex.vo.Answer;
 import coex.vo.Place;
 import coex.vo.PlaceAndPref;
+import coex.vo.PlaceAndScore;
 import coex.vo.Preference;
 import coex.vo.Schedule;
 
@@ -32,19 +34,18 @@ import coex.vo.Schedule;
  * 사용자로부터 스케줄, 답변, 채울 시간을 입력받아 해당 위치에 액션을 채워주는 알고리즘과 각종 필요 메쏘드들을 모아둔 클래스
  * 
  * @author 김진홍 최지영
+ * @enhancer 박지호
  * 
  */
 public class ScheRecomm {
-	//TODO:
-	//장소+선호도 합친 모든 값의 목록 
+
 	private ArrayList<PlaceAndPref> pnpArrList;
-	
-	
-	
+
 	public ScheRecomm() {
-		
+
 		pnpArrList = (ArrayList<PlaceAndPref>) new PlaceAndPrefDAO().getAllList();
 	}
+
 	/**
 	 * Answer를 입력받아 Schedule로 만드는 메쏘드 주의:DB상에 Answer와 Preference는 만들지만 Schedule은
 	 * 바로 입력하지 않는다. 추천이 완성되면 넣어주어야 한다
@@ -56,9 +57,9 @@ public class ScheRecomm {
 
 		// 먼저 Answer를 DB에 넣고
 		ansDAO.insertAnswer(answer);
-		//방금 넣은 Answer의 식별자(Primary Key)를 받아와서
+		// 방금 넣은 Answer의 식별자(Primary Key)를 받아와서
 		int answer_no = ansDAO.getSeqNo();
-		//현재 Answer의 고유키를 업데이트 해준다
+		// 현재 Answer의 고유키를 업데이트 해준다
 		Schedule resultSche = new Schedule();
 		// 스케줄 객체에 답변의 식별자 저장
 		resultSche.setAnswerno(answer_no);
@@ -71,7 +72,7 @@ public class ScheRecomm {
 		resultSche.setSchedule_start_time(answer.getAnswer_start_time());
 		// 스케줄 END_TIME 셋팅
 		resultSche.setSchedule_end_time(answer.getAnswer_end_time());
-		//스케줄 타임테이블 설정
+		// 스케줄 타임테이블 설정
 		resultSche.setSchedule_time_table("");
 		// PREF생성 후 해당하는 PREF의 넘버를 PREFNO에 넣어줌
 		Preference pref = new Preference();
@@ -100,26 +101,35 @@ public class ScheRecomm {
 		int cafeCnt = 0; // 스케줄 속의 카페 이벤트 갯수를 센다
 		int cultureCnt = 0;// 스케줄 속의 문화/여가 활동 갯수를 센다
 		int shoppingCnt = 0;// 스케줄 속의 쇼핑 갯수를 센다(3개까지?)
-		String[] pArray = null;
-		ArrayList<Place> pList = null;
+		int confCnt = 0;//스케줄 속의 박람회 카운트
+		String[] pArray = null;//pLace Array
+		ArrayList<Place> pList = null;//placeList
 		ActionDAO actDAO = new ActionDAO();// 액션 DAO
-		Place prevPlace = null;
+		Place prevPlace = null;//이전 Place
 
 		// TODO:Base Case
 		// 스케줄 꽉 채워줬는지 여부를 체크하는 부분
-		if (schedule.getSchedule_time_list()!= null) {// 스케줄에 일정이 하나라도
-																// 있으면
+		if (schedule.getSchedule_time_list() != null) {// 스케줄에 일정이 하나라도
+														// 있으면
 			String[] splitted = schedule.getSchedule_time_list().split(",|~");
 			lastEventEndTime = splitted[splitted.length - 1];
 
 			// 스케줄의 마지막 이벤트 시간과 스케줄의 마지막 시간을 비교해 같으면 바로 종료한다.
 			if (checkTimeDiff(endTime, lastEventEndTime) == 0) {
 				System.out.println("스케줄 꽉 참 완성!!");
-				if(schedule.getSchedule_event_list().endsWith(","))schedule.setSchedule_event_list(schedule.getSchedule_event_list().substring(0,schedule.getSchedule_event_list().length()-1));
-				if(schedule.getSchedule_time_list().endsWith(","))schedule.setSchedule_time_list(schedule.getSchedule_time_list().substring(0,schedule.getSchedule_time_list().length()-1));
-			    if(schedule.getSchedule_node_list().endsWith(","))schedule.setSchedule_node_list(schedule.getSchedule_node_list().substring(0,schedule.getSchedule_node_list().length()-1));
-			    if(schedule.getSchedule_img_list().endsWith(","))schedule.setSchedule_img_list(schedule.getSchedule_img_list().substring(0,schedule.getSchedule_img_list().length()-1));
-			   
+				if (schedule.getSchedule_event_list().endsWith(","))
+					schedule.setSchedule_event_list(schedule.getSchedule_event_list().substring(0,
+							schedule.getSchedule_event_list().length() - 1));
+				if (schedule.getSchedule_time_list().endsWith(","))
+					schedule.setSchedule_time_list(schedule.getSchedule_time_list().substring(0,
+							schedule.getSchedule_time_list().length() - 1));
+				if (schedule.getSchedule_node_list().endsWith(","))
+					schedule.setSchedule_node_list(schedule.getSchedule_node_list().substring(0,
+							schedule.getSchedule_node_list().length() - 1));
+				if (schedule.getSchedule_img_list().endsWith(","))
+					schedule.setSchedule_img_list(
+							schedule.getSchedule_img_list().substring(0, schedule.getSchedule_img_list().length() - 1));
+
 				return;
 			}
 		}
@@ -132,11 +142,12 @@ public class ScheRecomm {
 
 			// 액션목록을 채워준다
 			for (String s : pArray) {
-				if(s.length()<2)continue;
-				
+				if (s.length() < 2)
+					continue;
+
 				// 만약 액션이면 해당하는 액션의 플레이스 넣어줌
 				if (Integer.parseInt(s) > 20000) {
-					//integer.parseInt(s)는 action_no라는 action테이블의 기본키
+					// integer.parseInt(s)는 action_no라는 action테이블의 기본키
 					Place pp = pDAO.selectPlace(actDAO.findAction(Integer.parseInt(s)).getPlace_no());
 					pList.add(pp);
 				} else {
@@ -159,14 +170,15 @@ public class ScheRecomm {
 				if (p.getPlace_type() == 2) {
 					cultureCnt++;
 				}
+				if(p.getPlace_type()==1){
+					confCnt++;
+				}
 			}
 		}
 		System.out.println("식사 횟수: " + mealCnt);
 		System.out.println("카페 수: " + cafeCnt);
 		System.out.println("문화생활 횟수: " + cultureCnt);
-		// TODO: 이전 플레이스 : PrevPlace
-
-		// 현재 스캐줄을 채워줄 시작시간, 종료시간
+		System.out.println("박람회 횟수: " + confCnt);
 
 		// 먼저 DB에서 PlaceAndPref를 가져와서 ArrayList에 담는다.
 		ArrayList<PlaceAndPref> pnpList = new ArrayList<>(this.pnpArrList);
@@ -179,30 +191,22 @@ public class ScheRecomm {
 			PlaceAndPref pandp = pnp.next();
 
 			if (checkTimeDiff(pandp.getPlace_open_time(), startTime) > 0) {
-				System.out.println(pandp.getPlace_name() + " 아직 영업개시 안해서 삭제");// 영업개시
-																				// 아직
-																				// 안해서
-																				// 제거
+				System.out.println(pandp.getPlace_name() + " 아직 영업개시 안해서 삭제");//영업개시 안한곳 삭제
 				pnp.remove();
-			} else if (checkTimeDiff(pandp.getPlace_close_time(), startTime) < 0) {// 영업시간
-																					// 끝난곳
-																					// 제거
+			} else if (checkTimeDiff(pandp.getPlace_close_time(), startTime) < 0) {// 영업시간 끝난곳 제거
 				System.out.println(pandp.getPlace_name() + " 영업 종료해서 삭제");
 				pnp.remove();
-			} else if (pandp.getPlace_type() == 1) {// 박람회 관람이 아닌 경우 제거
-				System.out.println(pandp.getPlace_name() + " 박람회라서 삭제");
+			} else if ((pandp.getPlace_type() == 1&&confCnt==1) || pandp.getPlace_type() == 1&&answer.getAnswer_purpose_no()!=0) {
+				System.out.println(pandp.getPlace_name() + " 박람회꽉차서 혹은 방문목적이 박람회가 아니라서 삭제");
 				pnp.remove();
-			} else if ((mealCnt == 2 && pandp.getPlace_type() == 3) || (prevPlace!=null&&prevPlace.getPlace_type()==3&&pandp.getPlace_type() == 3)) {// 식사가 꽉 차거나 이전 작업이 식사이면
-																	// 제거
+			} else if ((mealCnt == 2 && pandp.getPlace_type() == 3)
+					|| (prevPlace != null && prevPlace.getPlace_type() == 3 && pandp.getPlace_type() == 3)) {// 식사가 꽉 차거나 이전 작업이 식사이면 젝
 				System.out.println(pandp.getPlace_name() + " 식사가 꽉 차서 삭제");
 				pnp.remove();
-			} else if (cafeCnt == 2 && pandp.getPlace_type() == 4) {// 카페가 꽉 차면
-																	// 제거
+			} else if (cafeCnt == 2 && pandp.getPlace_type() == 4) {// 카페가 꽉 차면 제거
 				System.out.println(pandp.getPlace_name() + " 커피숍이 꽉 차서 삭제");
 				pnp.remove();
-			} else if (cultureCnt == 2 && pandp.getPlace_type() == 2) {// 문화/여가가
-																		// 꽉 차면
-																		// 제거
+			} else if (cultureCnt == 2 && pandp.getPlace_type() == 2) {// 문화/여가가 꽉 차면 제거
 				System.out.println(pandp.getPlace_name() + " 문화생활이 꽉 차서 삭제");
 				pnp.remove();
 			} else if (this.timeMinuteDiff(Integer.parseInt(startTime.split(":")[0]),
@@ -233,8 +237,18 @@ public class ScheRecomm {
 			p.setPref_no(0);
 		}
 		// 점수계산부분-----------------------------------------------------------------------------------------------------------------------
+
+		//박람회 관람일경우 박람회에 점수 추가
+		if(answer.getAnswer_purpose_no()==0){
+			for (PlaceAndPref p : pnpList) {
+				if (p.getPlace_type() == 1) {
+					p.setPref_no(1000);
+				}
+			}
+		}
+		
 		// 식사시간이면 식사에 1000점씩 추가 (pref_no)에 추가
-		if ((checkTimeDiff("10:59", startTime) == -1 && checkTimeDiff(startTime, "14:00") == -1)//TODO:10:59?
+		if ((checkTimeDiff("10:59", startTime) == -1 && checkTimeDiff(startTime, "14:00") == -1)// TODO:10:59?
 				|| (checkTimeDiff("16:59", startTime) == -1 && checkTimeDiff(startTime, "20:00") == -1)) {
 			for (PlaceAndPref p : pnpList) {
 				if (p.getPlace_type() == 3) {
@@ -242,15 +256,14 @@ public class ScheRecomm {
 				}
 			}
 
-		}else{
+		} else {//식사시간이 아니면 식당에서 1000점씩 마이너스
 			for (PlaceAndPref p : pnpList) {
 				if (p.getPlace_type() == 3) {
 					p.setPref_no(-1000);
 				}
 			}
 		}
-		
-		
+
 		if (prevPlace != null) {
 			// PrevPlace의 번호가 가 식사(3)였다면 카페/디저트 1000점 추가
 			if (prevPlace.getPlace_type() == 3) {
@@ -267,7 +280,15 @@ public class ScheRecomm {
 						p.setPref_no(1000);
 					}
 				}
+			}//if
+			
+			//같은 타입의 이벤트가 연속해서 나오지 않도록 제어
+			for(PlaceAndPref p : pnpList){
+				if(p.getPlace_type()==prevPlace.getPlace_type()){
+					p.setPref_no(-1000);
+				}
 			}
+			
 		}
 		// TODO: PrevEvent가 쇼핑이었으면? + 그 외 부분
 
@@ -278,37 +299,50 @@ public class ScheRecomm {
 		 */
 
 		// 최종선택부분=====================================================================
-		HashMap<Integer, Integer> placeNoAndScore = new HashMap<>();//해쉬맵을 만들고
-		for (PlaceAndPref p : pnpList) {//반복문 돌면서
-			int score = this.answerToScore(answer, p, startTime);//엔써 기반으로 점수를 추출하고
-			int placeNo = p.getPlace_no();//해당 플레이스 넘버 구한 뒤
-			// System.out.println(placeNo + ":" + score);
-			placeNoAndScore.put(placeNo, score);//맵에 넣어준다
+
+		ArrayList<PlaceAndScore> pasList = new ArrayList<>();// <장소번호,점수>로 구성된
+																// 객체들이 모두 담길 공간
+		for (PlaceAndPref p : pnpList) {// 반복문 돌면서
+			int score = this.answerToScore(answer, p, startTime);// 엔써 기반으로 점수를
+																	// 추출하고
+			int placeNo = p.getPlace_no();// 해당 플레이스 넘버 구한 뒤
+			pasList.add(new PlaceAndScore(placeNo, score));// 맵에 넣어준다
 		}
 
-		// 벨류로 정렬
-		ArrayList<Integer> finalWinners = new ArrayList<>();//최종승자들이 담길 ArrayList
-		Iterator<Integer> it = this.sortByValue(placeNoAndScore).iterator();//해쉬맵을 반복할 반복자
-
-		int aaa = it.next();
-		int count = 0;
-		while (it.hasNext() && count < 30) {
-			int temp = (Integer) it.next();
-			//System.out.println(temp + " = " + placeNoAndScore.get(temp));
-			finalWinners.add(temp);
-			count++;
+		Collections.sort(pasList);// 정렬후
+		Collections.reverse(pasList);// 반대로 해준다(내림차순으로 정렬됨)
+		for (PlaceAndScore pap : pasList) {
+			System.out.println(pap.toString());
 		}
-		Place finalWinner=null;
-		if (prevPlace!=null && prevPlace.getPlace_type() == 4) {//이전행위가 커피면
-			finalWinner = new PlaceDAO().selectPlace(finalWinners.get(0));//한번에 빼온다
-		}else{
-		// 섞고
-		 Collections.shuffle(finalWinners);
-		// 빼온다
-		finalWinner = new PlaceDAO().selectPlace(finalWinners.get(0));
+
+		Place finalWinner = null;
+		ArrayList<Place> finalCandidates = new ArrayList<>();// 최종후보 몇명이 담길
+																// 어레이리스트
+
+		if (prevPlace != null && prevPlace.getPlace_type() == 4) {// 이전행위가 커피면
+			finalWinner = new PlaceDAO().selectPlace(pasList.get(0).getPlaceID());// 첫
+																					// 값을
+																					// 빼온다
+		} else {// 그 외에는 앞에서 3개만 넣어서 그중 랜덤하게 빼온다
+			if (pasList.size() < 3) {
+				finalWinner = new PlaceDAO().selectPlace(pasList.get(0).getPlaceID());
+			} else {
+				for (int i = 0; i < 3; i++) {// 2개 넣고
+					finalCandidates.add(new PlaceDAO().findPlace(pasList.get(i).getPlaceID()));
+				}
+				for (Place p : finalCandidates) {
+					System.out.println("최종후보 3명[섞기전]:" + p.getPlace_name() + "pNo:"+p.getPlace_no());
+				}
+				Collections.shuffle(finalCandidates, new Random());// 섞은 후
+				for (Place p : finalCandidates) {
+					System.out.println("최종후보 3명:" + p.getPlace_name() + "pNo:"+p.getPlace_no());
+				}
+
+				finalWinner = finalCandidates.get(0);// 제일 앞의 Place를 빼온다
+			}
 		}
 		System.out.println("최종후보 : " + finalWinner.getPlace_name());
-
+		
 		// Place의 runtime을 고려해 넣어줘야 한다
 		// 스케줄의 최대 런타임부터 최소 런타임까지 15씩 빼가며 반복하며
 		// 현재 스캐줄의 입력시간에 남은 시간에 들어갈 수 있는 크기가 되면 넣어준다
@@ -339,13 +373,13 @@ public class ScheRecomm {
 		}
 
 		// 스케줄의 시간리스트에 시작시간~새로운시작시간 넣어줌
-		schedule.setSchedule_time_list(schedule.getSchedule_time_list() + startTime + "~" + newStartTime+",");
+		schedule.setSchedule_time_list(schedule.getSchedule_time_list() + startTime + "~" + newStartTime + ",");
 		// 스케줄의 이벤트리스트에 새로운 이벤트 번호 넣어줌
-		schedule.setSchedule_event_list(schedule.getSchedule_event_list() + finalWinner.getPlace_no()+",");
+		schedule.setSchedule_event_list(schedule.getSchedule_event_list() + finalWinner.getPlace_no() + ",");
 		// 스케줄의 노드리스트에 새로운 이벤트의 노드 넣어줌
-		schedule.setSchedule_node_list(schedule.getSchedule_node_list() + finalWinner.getPlace_nodeno()+",");
+		schedule.setSchedule_node_list(schedule.getSchedule_node_list() + finalWinner.getPlace_nodeno() + ",");
 		// 스케줄의 이미지리스트에 새로운 이벤트의 이미지 넣어줌
-		schedule.setSchedule_img_list(schedule.getSchedule_img_list() + finalWinner.getPlace_photo_name()+",");
+		schedule.setSchedule_img_list(schedule.getSchedule_img_list() + finalWinner.getPlace_photo_name() + ",");
 		// 그 후 새 시작시간값과 종료시간을 넣어 재귀호출
 		System.out.println(schedule.toString());
 		// 스케줄 객체에 시간값, 이벤트, 시간목록, 노드, 사진 추가해주고
@@ -354,9 +388,9 @@ public class ScheRecomm {
 		scheduleRecomm(answer, schedule, newStartTime, endTime);
 	}
 
-	
 	/**
 	 * 사용자가 입력한 답변을 바탕으로 Preference에서 필요한 값만 합산해 점수로 환산하는 메소드
+	 * 
 	 * @param answer
 	 * @param Pref
 	 * @param startTime
@@ -431,8 +465,7 @@ public class ScheRecomm {
 			totalScore += Pref.getPref_ten();
 			break;
 		}
-		SimpleDateFormat time = new SimpleDateFormat("H:mm"); // 시간대별로
-		// 계산해주는 부분
+		SimpleDateFormat time = new SimpleDateFormat("H:mm"); // 시간대별로 계산해주는 부분
 		try {
 			Date start = time.parse(startTime);
 
@@ -477,7 +510,6 @@ public class ScheRecomm {
 	 */
 	public int checkTimeDiff(String firstTime, String secondTime) {
 		int result = 0;
-		
 		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
 		try {
 			Date firstDate = formatter.parse(firstTime);
@@ -596,7 +628,6 @@ public class ScheRecomm {
 	}
 
 	public static void main(String[] args) {
-		// System.out.println(new ScheRecomm().addTime("12:30", "01:35"));
 		System.out.println(new ScheRecomm().addTime2("70", "01:35"));
 
 	}
