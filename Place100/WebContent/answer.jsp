@@ -242,9 +242,7 @@ $(document).ready(function() {
 	
 	//버튼입력시 answer을 같이 action으로 넘겨주는 jquery
 	$('#btn_answer_ok').on('click',function(){
-		alert('dkdkdkd');
 		/* var data = JSON.stringify(answer); */
-		alert(answer);
 		/* var jdata = JSON.parse(data);
 		alert(jdata); */
 		$.ajax({
