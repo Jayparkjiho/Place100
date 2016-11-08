@@ -344,7 +344,7 @@ left: 35%;
     border-radius: 50px;
 }
 .board-footer{
-	top: 71%;
+	top: 85%;
     left: 50%;
     position: absolute;
 }
@@ -352,9 +352,11 @@ left: 35%;
 </style>
 </head>
 <body>
+<jsp:include page="header.jsp" flush="false"/>
+
 <section style="background:#efefe9;">
 	<div class="container">
-		<div class="row">
+		<div class="row" style="width: 100%;">
 			<div class="board">
                 <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
 				<!-- 스케줄 시간별 순서 -->

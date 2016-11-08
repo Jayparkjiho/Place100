@@ -35,6 +35,9 @@ console.log(imageList);
 </script>
 </head>
 <body>
+
+<jsp:include page="header.jsp" flush="false"/>
+
 <script type="text/processing" data-processing-target="pjs">
 
 PImage[] imgs = new PImage[pathCount];

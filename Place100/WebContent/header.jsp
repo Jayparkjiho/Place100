@@ -120,14 +120,24 @@ ul {
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-    	<nav class="white" role="navigation">
-    <div class="nav-wrap logging">
-      <a id="logo-container" href="main.action" class="brand-logo">Coex100</a>
-      
-     <ul class="right hide-on-med-and-down">
-		<li><a data-activates="nav-mobile" href="answerPage.action" class="fark">menu</a></li>
-      </ul>
-    </div>
-  </nav>
+	<nav class="white" role="navigation">
+		<div class="nav-wrap logging">
+			<a id="logo-container" href="main.action" class="brand-logo">Coex100</a>
+
+			<ul class="right hide-on-med-and-down">
+				<li><a data-activates="nav-mobile" href="answerPage.action"
+					class="fark">새 스케줄 생성</a></li>
+			</ul>
+			
+			<ul class="right hide-on-med-and-down">
+				<li><a data-activates="nav-mobile" href="answerPage.action"
+					class="fark">추천 스케줄</a></li>
+			</ul>
+			<ul class="right hide-on-med-and-down">
+				<li><a data-activates="nav-mobile" href="answerPage.action"
+					class="fark">스케줄 검색</a></li>
+			</ul>
+		</div>
+	</nav>
 </body>
 </html>
