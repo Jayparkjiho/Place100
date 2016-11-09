@@ -59,6 +59,7 @@ nav .brand-logo {
 }
 nav a {
     color: #fff;
+    text-decoration:none
 }
 a {
     text-decoration: none;
@@ -113,6 +114,7 @@ ul {
 }
 .fark:HOVER {
    background-color:#e5e4e3;
+   text-decoration:none
 }
 
 .input[type=text] {
@@ -134,7 +136,7 @@ input[type=text]:focus {
    <nav class="white" role="navigation">
       <div class="nav-wrap logging">
       
-         <a id="logo-container" href="main.action" class="brand-logo">Coex100</a>
+         <a id="logo-container" href="main.action" class="brand-logo" style="text-decoration:none">Coex100</a>
 
          <ul class="right hide-on-med-and-down">
             <li><a data-activates="nav-mobile" href="answerPage.action"

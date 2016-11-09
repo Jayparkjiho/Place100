@@ -41,7 +41,7 @@ console.log(imageList);
 <script type="text/processing" data-processing-target="pjs">
 
 PImage[] imgs = new PImage[pathCount];
-for(var i = 0; i<pathCount;i++){
+for(var i = 0; i<pathCount+1;i++){
 	imgs[i] = loadImage(imageList[i]);
 }
 
@@ -69,7 +69,7 @@ void setup() {
 	text(i/2+1,path[i]+10,path[i+1]);
 	fill(0,0,0);
   }
-	if(imgs[clkCnt]!=null){
+	if(clkCnt < path.length-1){
 		imgs[clkCnt].resize(200,200);
 		image(imgs[clkCnt],900,37);
 	}

@@ -409,13 +409,13 @@ $(document).ready(function() {
 					<div class="cal_head paper-shadow-top-z-2">
 
 						<button class="button_left">
-							<i class="material-icons">keyboard_arrow_left</i>
+							<i class="material-icons"><</i>
 						</button>
 
 						<span id="month_label">Month</span>
 
 						<button class="button_right">
-							<i class="material-icons">keyboard_arrow_right</i>
+							<i class="material-icons">></i>
 						</button>
 
 					</div>

@@ -263,10 +263,11 @@ li.active span.round-tabs.one5{
    padding: 0;
 }
 
-.nav-tabs > li a:hover{
+ .nav-tabs > li a:hover{
     background: transparent;
-}
-
+    text-decoration:none
+    
+} 
 .tab-content{
 }
 .tab-pane{
