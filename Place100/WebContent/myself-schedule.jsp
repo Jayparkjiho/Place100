@@ -26,8 +26,8 @@
         <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-	<span id="aaa">값값값</span>
-	<input type="button" id="getData" value="테스트">
+	<!-- <span id="aaa">값값값</span>
+	<input type="button" id="getData" value="테스트"> -->
 	
 
 

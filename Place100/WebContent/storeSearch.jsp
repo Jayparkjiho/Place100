@@ -19,7 +19,7 @@
 <script src="js/jquery-3.1.0.min.js"></script>
 <script type="text/javascript">
 $(function () {
-	var place_type = '';  
+	/* var place_type = '';   */
 	var currentPage = 1;
 	 $('input[type=button]').on('click',function() {
          console.log("처음 로딩 시 현재페이지: " + currentPage);
@@ -47,7 +47,7 @@ $(function () {
         else if(place_type === '패션잡화'){
             place_type = 5;
          }
-        else if(place_type === '미용'){
+        else if(place_type === '뷰티'){
             place_type = 6;
          }
         else if(place_type === '라이프스타일'){
@@ -73,14 +73,14 @@ $(function () {
                type : 'post',
                data : {
                   'place.place_type' : place_type,
-                  'currentPage' : currentPage
+                  /* 'currentPage' : currentPage */
                },
                success : function(data) {
                   $('#sex_list').empty();
                   $(data.list_place).each(function(index, item) {
                      var np = addLogContent(item);
                      $('#sex_list').append(np);
-                     alert("after success" + place_type);
+                    /*  alert("after success" + place_type); */
                      /* var log_id = item.log_id;
                      $('.'+log_id).css('background-image','url(img/'+item.member_id+ '/' + item.log_id+'/'+item.main_photo_name + ')');
                      */
@@ -101,7 +101,9 @@ $(function () {
 	       output += "<div>"
 	       output += "<input type='radio' name='storeRadio'>"
 	       output += "<span id='placeName'>"+ place.place_name + "</span>"
-	       output += "<span id='placeName'>"+ place.place_category + "</span>"
+	       output += "<span id='placeCategory'>"+ place.place_category + "</span>"
+	       output += "<br>"
+	       output += "<span id=placeImg> <img src="+"'"+place.place_photo_name+"'"+" height=150 width=150/></span>"
 	       output += "</div>"
 	       
 	       return output;

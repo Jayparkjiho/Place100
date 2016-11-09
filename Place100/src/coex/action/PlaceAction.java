@@ -54,18 +54,18 @@ public class PlaceAction extends ActionSupport {
 	public String getPlaceList() throws Exception{
 		System.out.println("메소드");
 		
-		int countPerPage = Integer.parseInt(getText("place.countperpage"));
+		/*int countPerPage = Integer.parseInt(getText("place.countperpage"));
 		int pagePerGroup = Integer.parseInt(getText("place.pagepergroup"));
 		
 		System.out.println(currentPage);
 		System.out.println(countPerPage +" "+ pagePerGroup);
-		
+		*/
 		PlaceDAO dao = new PlaceDAO();
-		int total = dao.countAll(place.getPlace_type());
+		/*int total = dao.countAll(place.getPlace_type());
 		System.out.println("전체 상점 수 : " + total);
 		//pagenavigator 객체 생성(페이지당 글수, 그룹당 페이지 수, 현재페이지, 젠체 글수)
-		pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);
-		list_place= dao.getList(place.getPlace_type(), pagenavi.getStartRecord(), pagenavi.getCountPerPage());
+		pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);*/
+		list_place= dao.getList(place.getPlace_type());
 		System.out.println(list_place.toString());
 		return SUCCESS;
 	}

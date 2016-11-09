@@ -42,20 +42,20 @@ public class PlaceDAO {
 	 * @param countPerPage
 	 * @return ArrayList<Place>
 	 */
-	public ArrayList<Place> getList(int place_type, int startRecord, int countPerPage){
+	public ArrayList<Place> getList(int place_type/*, int startRecord, int countPerPage*/){
 		System.out.println("dao다요");
 		ArrayList P_list = new ArrayList<>();
-		System.out.println(startRecord + " " + countPerPage);
+		/*System.out.println(startRecord + " " + countPerPage);*/
 		
 		HashMap<String, Integer> map = new HashMap<>();
 		map.put("place_type", place_type);
 		
-		//결과 레코드 중 읽을 위치와 개수
+		/*//결과 레코드 중 읽을 위치와 개수
 		RowBounds bound = new RowBounds(startRecord, countPerPage);
-		
+		*/
 		try{
 			sqlSession = sqlSessionFactory.openSession();
-			P_list =  (ArrayList) sqlSession.selectList("PlaceMapper.placeList", map, bound);
+			P_list =  (ArrayList) sqlSession.selectList("PlaceMapper.placeList", map/*, bound*/);
 			System.out.println("어레이사이즈"+P_list.size());
 		}catch(Exception e){
 			e.printStackTrace();
