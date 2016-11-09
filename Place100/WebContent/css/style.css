@@ -52,7 +52,7 @@ body::-webkit-scrollbar { display: none;  }
           line-height: 20px;
         }
 
-
+@font-face{font-family:'GN-koharuiro_Sunray'; src:url('fonts/GN-koharuiro_Sunray.ttf')}
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update

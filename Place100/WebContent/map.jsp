@@ -73,6 +73,15 @@ void setup() {
 		imgs[clkCnt].resize(200,200);
 		image(imgs[clkCnt],900,37);
 	}
+	if(imgs[clkCnt+1]!=null){
+		imgs[clkCnt+1].resize(200,200);
+		image(imgs[clkCnt+1],900,437);
+	}
+if(imgs[clkCnt+1]!=null){
+line(1000,263,1000,430);
+line(1000,430,950,400);
+line(1000,430,1050,400);
+}
 	fill(123,243,89);
   	ellipse(path[path.length-3]-20,path[path.length-2]-10,15,15);
 	textSize(70);
