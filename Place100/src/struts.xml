@@ -65,6 +65,10 @@
     	<result name="success">/myself-schedule.jsp</result>
     </action>
     
+    <action name="searchSchedule" class="coex.action.ScheduleAction" method="searchSchedule">
+    	<result name="success" type="redirect">schedule.action</result>
+    </action>
+    
     <!-- ***********************************************************************************************8 -->
     <!-- 어떻게 되어있는것인지 잘 모르겠는 부분 왜 insertAnswer따로고 schedule 명령어 따로고, getdata는 왜 메소드가 같은 건인지 -->
 <!--     
