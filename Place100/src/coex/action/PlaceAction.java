@@ -52,7 +52,8 @@ public class PlaceAction extends ActionSupport {
 	 * @throws Exception
 	 */
 	public String getPlaceList() throws Exception{
-		System.out.println("메소드");
+		System.out.println("getPlaceList() 메소드");
+		System.out.println(place);
 		
 		/*int countPerPage = Integer.parseInt(getText("place.countperpage"));
 		int pagePerGroup = Integer.parseInt(getText("place.pagepergroup"));
@@ -69,6 +70,7 @@ public class PlaceAction extends ActionSupport {
 		System.out.println(list_place.toString());
 		return SUCCESS;
 	}
+	
 	
 
 	public Place getPlace() {

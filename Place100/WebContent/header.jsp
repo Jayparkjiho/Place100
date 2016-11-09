@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <title>Parallax Template - Materialize</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<title>Parallax Template - Materialize</title>
 <style type="text/css">
 
   .white {
@@ -112,22 +112,74 @@ ul {
     list-style-type: none;
 }
 .fark:HOVER {
-	background-color:#e5e4e3;
+   background-color:#e5e4e3;
+}
+
+.input[type=text] {
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+    width: 100%;
 }
 </style>
 
   <!-- CSS  -->
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-    	<nav class="white" role="navigation">
-    <div class="nav-wrap logging">
-      <a id="logo-container" href="main.action" class="brand-logo">Coex100</a>
+   <nav class="white" role="navigation">
+      <div class="nav-wrap logging">
       
-     <ul class="right hide-on-med-and-down">
-		<li><a data-activates="nav-mobile" href="answerPage.action" class="fark">menu</a></li>
-      </ul>
-    </div>
-  </nav>
+         <a id="logo-container" href="main.action" class="brand-logo">Coex100</a>
+
+         <ul class="right hide-on-med-and-down">
+            <li><a data-activates="nav-mobile" href="answerPage.action"
+               class="fark">새 스케줄 생성</a></li>
+         </ul>
+         
+         <ul class="right hide-on-med-and-down">
+            <li><a data-activates="nav-mobile" href="answerPage.action"
+               class="fark">추천 스케줄</a></li>
+         </ul>
+         
+         <ul class="right hide-on-med-and-down">
+            <li><input type="text" name="search_text" placeholder="Search.."></li>
+         </ul>
+         
+         
+      </div>
+   </nav>
+
+<!-- ==================================================================================== -->   
+<!-- jquery 검색 기능 구현 -->
+<!-- 11-08-16 작성자: 박지호 -->
+<script src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("input[name=search_text]").keydown(function (key) {
+ 
+        if(key.keyCode == 13){//키가 13이면 실행 (엔터는 13)
+            searchSchedule();
+        }
+ 
+    });
+     
+    searchSchedule = function (){
+        //검색 찾는 로직 구현
+        var search_data = $("input[name=search_text]").val();
+        if (search_data.length == 0) {
+         alert("나니모 입력 쿠다사이");
+         return;
+      }
+        var url = "searchSchedule.action?search_text=" + search_data;    
+        $(location).attr('href',url);
+    };
+     
+});
+</script>
 </body>
 </html>

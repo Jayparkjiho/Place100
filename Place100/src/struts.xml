@@ -78,6 +78,12 @@
     <action name="getList" class="coex.action.PlaceAction" method="getPlaceList">
     	<result type="json"/>
     </action>
+    
+        <!-- 스케줄 번호 보여주는 창 띄우기 -->
+    <action name="scheNo" class="coex.action.AnswerAction" method="showScheNo">
+    	<result>/showScheNo.jsp</result>
+    </action>
+    
     <!-- ***********************************************************************************************8 -->
     <!-- 어떻게 되어있는것인지 잘 모르겠는 부분 왜 insertAnswer따로고 schedule 명령어 따로고, getdata는 왜 메소드가 같은 건인지 -->
 <!--     
@@ -148,11 +154,7 @@
     	<result>/placeList2.jsp</result>
     </action>
     
-    <!-- 스케줄 번호 보여주는 창 띄우기 -->
-    <action name="scheNo" class="coex.action.AnswerAction" method="showScheNo">
-    	<result>/showScheNo.jsp</result>
-    </action>
-    
+
     
 
     </package>
