@@ -17,20 +17,12 @@
 			someValue: null
 		},
 		_tpl_event: ['<li class="tl-item">',
-						'<div class="tl-wrap {{class}}">',
-							'<span class="tl-date">{{time}}</span>',
+						'<div class="tl-wrap">',
+							'<span class="tl-date" id="{{span_id}}">{{time}}</span>',
 							'<div class="tl-content panel padder b-a">',
 								'<span class="arrow left pull-up" ></span>',
 								'<div>',
-									'<select name="{{select_name}}">',
-										'<option value="9">방문일정을 선택</option>',
-										'<option value="0">박람회</option>',
-										'<option value="1">식사</option>',
-										'<option value="2">쇼핑</option>',
-										'<option value="3">문화활동</option>',
-										'<option value="4">데이트</option>',
-										'<option value="5">그외</option>',
-									'</select>',
+									'<input type="text" id="{{select_name}}" placeholder="방문일정을 선택">',
 								'</div>',
 							'</div>',
 						'</div>',
@@ -116,7 +108,8 @@
 			
 			var event_html = this._tpl_event.replace('{{time}}', this._format_time(data.time) );	
 			event_html = event_html.replace('{{select_name}}', data.select_name);
-			event_html.replace('{{class}}', data.css);
+			event_html = event_html.replace('{{span_id}}', data.span_id);
+			//event_html.replace('{{span_id}}', data.span_id);
 
 			return event_html;
 

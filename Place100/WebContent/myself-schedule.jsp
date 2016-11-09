@@ -26,8 +26,8 @@
         <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-	
-	
+	<span id="aaa">값값값</span>
+	<input type="button" id="getData" value="테스트">
 	
 
 
@@ -45,16 +45,16 @@
 						{time: '10:00',
 							color: '#555',
 							css: 'success',
-							content: '방문 목적 선택하기', select_name: 'purpose10'},{time: '11:00',
+							content: '방문 목적 선택하기', select_name: 'purpose10', span_id: 'time10'},{time: '11:00',
 							color: '#00ff00',
 							css: 'success',
-							content: '방문 목적 선택하기', select_name: 'purpose11'},{time: '12:00',
+							content: '방문 목적 선택하기', select_name: 'purpose11', span_id: 'time11'},{time: '12:00',
 							color: '#000',
 							css: 'success',
-							content: '방문 목적 선택하기', select_name: 'purpose12'},{time: '13:00',
+							content: '방문 목적 선택하기', select_name: 'purpose12', span_id: 'time12'},{time: '13:00',
 							color: '#000',
 							css: 'success',
-							content: '방문 목적 선택하기', select_name: 'purpose13'}
+							content: '방문 목적 선택하기', select_name: 'purpose13', span_id: 'time13'}
 					]
 				});
 
@@ -69,16 +69,34 @@
 							[
 								{	time: time + ":00",
 									css: 'success',
-									content: '방문 목적 선택하기', select_name: 'purpose'+currTime}
+									content: '방문 목적 선택하기', select_name: 'purpose'+currTime, span_id: 'time'+currTime}
 							]
 						 );
 				currTime++;
 				});
 				
+				var placeList = [];
+				var timeList = [];
 				
-				$('#myModal').on('shown.bs.modal', function () {
-					  $('#myInput').focus()
-					})
+				$("#getData").on("click", function(){
+					for (var i = 10; i < 23; i++) {
+						var select_value = $("#purpose"+i).val();
+						var time_value = $("#time"+i).html();
+						if (select_value != 9) {
+							placeList.push(select_value);
+							timeList.push(time_value);
+						}//if close
+					}//for close
+					console.log(placeList);
+					console.log(timeList);
+				});
+				
+				var childWindow;
+				$('input[type=text]').on('click',function(){
+					childWindow = window.open('storeSearch.action','new','resizable=no scrollbars=yes top=300 left=500 width=400 height=300');
+				});
+				
+				
 			});
 
 
