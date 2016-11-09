@@ -287,11 +287,6 @@ $(document).ready(function() {
   transition: background-color 0.3s ease-in,
               color 0.3s ease-in;
 }
-.back-white{
-	background-color: white;
-	opacity: 0.7;
-	border-radius: 10px;
-}
 </style>
 <title>Answer</title>
 
@@ -312,10 +307,10 @@ $(document).ready(function() {
 			style="-webkit-perspective: 1000px; -webkit-backface-visibility: hidden; -webkit-transform: translateX(200px);">
 
 			<!-- 1page -->
-			<li class="slide img1" style="background-image: url(img/coex-back-another.jpg); ">
+			<li class="slide img1" style="background-color: white;">
 				<div class="table">
                		<div class="container">
-               		<div class="back-white">
+               		<div>
 							<div class="radio-tile-group">
 
 								<div class="input-container">
@@ -407,7 +402,7 @@ $(document).ready(function() {
 			</li>
 			
 			<!-- 2page -->
-			<li class="slide img2" style="background-image: url(img/coex-back-another.jpg); ">
+			<li class="slide img2" style="background-color: white;">
 
 				<div class="calander noselect" style="margin-top: 10%;">
 
@@ -443,7 +438,7 @@ $(document).ready(function() {
 			
 			<!-- 3page -->
 			<li class="slide img3"
-				style="background-image: url(img/coex-back-another.jpg); ">
+				style="background-color: white; ">
 				<div class="timetime" style="margin: 12%; width: 100%;">
 				<div class="spaceEmOut">
 					<fieldset class="switch switch-five">
@@ -490,7 +485,7 @@ $(document).ready(function() {
 
 			<!-- 4page -->
 			<li class="slide img4 "
-				style="background-image: url(img/coex-back-another.jpg); ">
+				style="background-color: white; ">
 				<div class="agender-many" style="margin: 11%;">
 					<div class="cc-selector">
 						<input id="one" type="radio" name="credit-card" value="10" /> <label

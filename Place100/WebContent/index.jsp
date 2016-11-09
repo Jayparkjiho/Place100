@@ -30,13 +30,6 @@ position: absolute;
 	margin-left: 42%;
 }
 
-html { 
-  background: url("img/coex-main-another.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover; 
-  -o-background-size: cover; 
-  background-size: cover; 
-}
 </style>
 <title>코엑스 100배 즐기기</title>
 
