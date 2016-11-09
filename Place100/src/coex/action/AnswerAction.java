@@ -37,6 +37,7 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 	private ArrayList<Action> actionList = new ArrayList<>();
 	private String totalPath; 
 	private String imageList;
+	private int scheNo;
 	
 	/**
 	 * 입력받은 방문 목적이 전시회일때 전시회에 관련된 action객체 list를 db에서
@@ -137,7 +138,6 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 		}
 		
 		String[] placeValues1 = places.split(",");
-		
 		//여러 시간의 시작시간만 짜른다.
 		for (int i = 0; i < timeValues1.length; i++) {
 			timeValues2 = timeValues1[i].split("~");
@@ -234,8 +234,21 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 	}
 	
 	
+	public String showScheNo(){
+		this.setScheNo((int)session.get("Schedule_no"));
+		return SUCCESS;
+	}
 	
 	
+	
+
+	public int getScheNo() {
+		return scheNo;
+	}
+
+	public void setScheNo(int scheNo) {
+		this.scheNo = scheNo;
+	}
 
 	public String getImageList() {
 		return imageList;
@@ -329,8 +342,6 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	
-	
 	
 }
 

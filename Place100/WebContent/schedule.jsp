@@ -344,8 +344,8 @@ left: 35%;
     border-radius: 50px;
 }
 .board-footer{
-	top: 85%;
-    left: 50%;
+	top: 88%;
+    left: 33%;
     position: absolute;
 }
 
@@ -375,6 +375,7 @@ left: 35%;
 			
 				<!-- 보드 footer 이동하는 버튼 -->
 				<div class="board-footer">
+					<a class="btn btn-default btn-outline btn-circle collapsed" id="scheNo">스케줄 번호 받기</a>
 					<a class="btn btn-default btn-outline btn-circle collapsed" href="main.action" >메인화면 돌아가기</a>
 					<a class="btn btn-default btn-outline btn-circle collapsed" id="Sms_btn">일정 알림</a>
 					<a class="btn btn-default btn-outline btn-circle collapsed" id="map_btn" href="map.action">지도에서 보기</a>
@@ -407,6 +408,12 @@ function sendsms() {
 	document.getElementById('phone_num').value = phone_num;
 	document.sendSmsForm.submit();
 }
+
+var scheNoWindow;
+$('#scheNo').on('click',function(){
+	scheNoWindow = window.open('scheNo.action','new','resizable=no scrollbars=yes top=300 left=500 width=300 height=180');
+});
+
 </script>
 
 

@@ -148,6 +148,11 @@
     	<result>/placeList2.jsp</result>
     </action>
     
+    <!-- 스케줄 번호 보여주는 창 띄우기 -->
+    <action name="scheNo" class="coex.action.AnswerAction" method="showScheNo">
+    	<result>/showScheNo.jsp</result>
+    </action>
+    
     
 
     </package>
