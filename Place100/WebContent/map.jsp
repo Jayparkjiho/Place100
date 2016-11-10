@@ -44,11 +44,12 @@ PImage[] imgs = new PImage[pathCount];
 for(var i = 0; i<pathCount+1;i++){
 	imgs[i] = loadImage(imageList[i]);
 }
-
+PImage arrow;
 void setup() {
   size(1200, 1200);
   smooth();
   b = loadImage("img/map.png");
+  arrow = loadImage("img/footPrint.png");
  }
 
  void draw() //초당 60번 자동 반복되는 메쏘드
@@ -66,28 +67,30 @@ void setup() {
   	for(var i = 0; i+3 <path.length();i+=2){
 	line(path[i]-20,path[i+1]-10,path[i+2]-20,path[i+3]-10);
 	ellipse(path[i]-20,path[i+1]-10,15,15);
-	text(i/2+1,path[i]+10,path[i+1]);
 	fill(0,0,0);
   }
 	if(clkCnt < path.length-1){
+		textSize(30);
+		text("출발",900,130);
 		imgs[clkCnt].resize(200,200);
-		image(imgs[clkCnt],900,37);
+		image(imgs[clkCnt],900,137);
 	}
 	if(imgs[clkCnt+1]!=null){
+textSize(30);
+		text("도착",900,670);
 		imgs[clkCnt+1].resize(200,200);
 		image(imgs[clkCnt+1],900,437);
 	}
 if(imgs[clkCnt+1]!=null){
-line(1000,263,1000,430);
-line(1000,430,950,400);
-line(1000,430,1050,400);
+arrow.resize(35,75);
+image(arrow,990,350);
 }
-	fill(123,243,89);
+	fill(0,0,0);
   	ellipse(path[path.length-3]-20,path[path.length-2]-10,15,15);
 	textSize(70);
 
 if(clkCnt < path.length-1){
-  text(clkCnt+1+"번째 경로",850,300);
+  text(clkCnt+1+"번째 경로",850,80);
 }
   fill(0,0,0);
 
@@ -108,4 +111,9 @@ if(clkCnt >pathCount){
 <h1>click to start navigation</h1>
 <canvas id="pjs"> </canvas>
 </body>
+<script>
+$(window).click(function() {
+	$("h1").remove();
+	});
+</script>
 </html>

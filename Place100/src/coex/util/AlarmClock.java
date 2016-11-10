@@ -53,7 +53,7 @@ public class AlarmClock {
 							}
 							
 							if (time.equals(a.getTimes().get(i))) {//만약 현재시간과 새로받은 시간이 같다면
-								String message = a.getPlaces().get(i) + " 에 가야할 시간입니다.";
+								String message = a.getPlaces().get(i) + "에 가야할 시간입니다.";
 								String number = a.getNumber();
 								SendSMS ss = new SendSMS(number, message);
 								/*System.out.println(number + "," + message);*/

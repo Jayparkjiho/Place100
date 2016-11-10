@@ -346,7 +346,7 @@ left: 35%;
 }
 .board-footer{
 	top: 70%;
-    left: 33%;
+    left: 35%;
     position: absolute;
 }
 

@@ -131,7 +131,7 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 		
 		String times = schedule.getSchedule_time_list();
 		String[] timeValues1 = times.split(",");
-		String places = null;
+		String places = "";
 		
 		for (Place place : placeList) {
 			places += ""+place.getPlace_name()+",";
