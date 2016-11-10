@@ -17,15 +17,17 @@ public class PlaceAction extends ActionSupport {
 	List<Place> list_place;
 	PlaceDAO dao = new PlaceDAO();
 	
-	private File upload;						//업로드할 파일
+	/*private File upload;						//업로드할 파일
 	private String uploadFileName;				//업로드할 파일의 파일명
 	private String uploadContentType;			//업로드할 파일의 컨텐츠
 
 	int currentPage = 1;						//게시물 목록의 현 페이지
+*/	
 	PageNavigator pagenavi;
+	String name;
 	
-	
-	public String insertPlace(){
+	//place의 데이터 입력 메소드
+	/*public String insertPlace(){
 		System.out.println("insertPlace()메소드 정의");
 		System.out.println(place);
 		if (upload != null) {
@@ -43,7 +45,7 @@ public class PlaceAction extends ActionSupport {
 		}
 		dao.insertPlace(place);
 		return SUCCESS;
-	}
+	}*/
 	
 	/**
 	 * dao를 호출하여 보여즐 상점 리스트를 가져옴 
@@ -70,6 +72,13 @@ public class PlaceAction extends ActionSupport {
 		System.out.println(list_place.toString());
 		return SUCCESS;
 	}
+	/**
+	 * 스스로 스케줄 생성시 chlid창으로 값을 넘겨주는 메소드
+	 * @return
+	 */
+	public String sendname(){
+		return SUCCESS;
+	}
 	
 	
 
@@ -89,37 +98,14 @@ public class PlaceAction extends ActionSupport {
 		this.list_place = list_place;
 	}
 
-	public File getUpload() {
-		return upload;
+	public String getName() {
+		return name;
 	}
 
-	public void setUpload(File upload) {
-		this.upload = upload;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getUploadFileName() {
-		return uploadFileName;
-	}
-
-	public void setUploadFileName(String uploadFileName) {
-		this.uploadFileName = uploadFileName;
-	}
-
-	public String getUploadContentType() {
-		return uploadContentType;
-	}
-
-	public void setUploadContentType(String uploadContentType) {
-		this.uploadContentType = uploadContentType;
-	}
-
-	public int getCurrentPage() {
-		return currentPage;
-	}
-
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
 	
 	
 	

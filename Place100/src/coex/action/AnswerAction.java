@@ -197,6 +197,11 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 		System.out.println(tt);
 		return tt;
 	}
+	
+	/**
+	 * 지도를 보여주는데 사용되는 메소드
+	 * @return
+	 */
 	public String paintMap(){
 		int schedule_no = (int)session.get("Schedule_no");
 		String str ="";

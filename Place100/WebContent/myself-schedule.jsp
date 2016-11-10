@@ -6,46 +6,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>jquery.timeline Demo</title>
-
-
+<link rel="stylesheet" type="text/css" href="css/jquery.timeline.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <script src="js/jquery.timeline.js"></script>
 <script src="js/bootstrap.js"></script>
 <style type="text/css">
-
-body {
-	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-size: 14px;
-	line-height: 1.42857143;
-	color: #58666e;
-	background-color: white;
-	margin-left: 40%;
-}
+	body {
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		font-size: 14px;
+		line-height: 1.42857143;
+		color: #58666e;
+		background-color: white;
+		margin-left: 40%;
+	}
 </style>
-
-<link rel="stylesheet" type="text/css" href="css/jquery.timeline.css" />
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-
-	<!-- <span id="aaa">값값값</span>
-	<input type="button" id="getData" value="테스트"> -->
-	
 
 
 	<h1 style="margin:150px auto 30px auto;">스케줄 생성하기</h1>
 		<div id="element"></div>
 		
 		<div>
-			<a href="javascript:void(0);" id="add">Add More</a>
+			<a href="javascript:void(0);" id="add">Add More</a><br><br>
+			<a id="scheduleGo">스케줄 생성하기</a>
 		</div>
 		
 		<script>
-				var childWindow;
 			$(function() {
 				$("#element").timeline({
 					data: [
@@ -69,7 +60,6 @@ body {
 				$("#add").click(function(){
 				var time = currTime;
 				if(currTime>23){
-					alert("집에가씨발");
 					return;
 				}
 						$("#element").timeline("add",
@@ -100,22 +90,24 @@ body {
 				
 				var childWindow;
 				$('input[type=text]').on('click',function(){
-					var input_tag = $(this).attr('id');
-					alert(input_tag);
-					childWindow = window.open('storeSearch.action?input_tag='+input_tag,'new','resizable=no scrollbars=yes top=300 left=500 width=400 height=300');
+					var name = $(this).attr('id');
+					childWindow = window.open('storeSearch.action?name='+name,'new','resizable=no scrollbars=yes top=300 left=500 width=620 height=400');
 				});
+			
+				$("#scheduleGo").on("click", function () {
+					var place_no = 12;
+					var url = "searchSchedule.action?search_text=" + place_no;    
+			        $(location).attr('href',url);
+				})
 				
 			});
-			
-			function selected_place(place_no){
-				var place_no = place_no;
-				alert(place_no);
+
+			function setChildValue(parents, name){
+			      document.getElementById(parents).value = name;
 			}
-
-
-
+			
+			
 		</script>
 	</body>
-
 
 </html>
