@@ -274,6 +274,7 @@ $(document).ready(function() {
   padding: 8px;
   color: black;
   border: 2px solid black;
+  border-radius : 20px;
   text-align: center;
   outline: none;
   text-decoration: none;
@@ -282,11 +283,32 @@ $(document).ready(function() {
 }
 .ghost-button:hover,
 .ghost-button:active {
-  background-color: black;
+  background-color: #039be5;
   color: white;
   transition: background-color 0.3s ease-in,
               color 0.3s ease-in;
 }
+html { 
+  background: url("img/test3.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover; 
+  -o-background-size: cover; 
+  background-size: cover; 
+  background-color: rgba(255,255,255,0.5);
+}
+.content{
+	margin-top: 12%;
+	text-align: center;
+/*    height: 70%;
+   width : 70%; */
+   /*  margin-top: 10%;
+    margin-left: 15%; */
+    background-color: white;
+    border-radius: 25px;
+    opacity: 0.8;
+  /*   display: flex; */
+}
+
 </style>
 <title>Answer</title>
 
@@ -298,8 +320,8 @@ $(document).ready(function() {
 
 	<!-- <div id="console"></div> -->
 
-	<div class="arrow" id="right-arrow">></div>
-	<div class="arrow" id="left-arrow"><</div>
+	<div class="arrow" id="right-arrow"><h1>></h1></div>
+	<div class="arrow" id="left-arrow"><h1><</h1></div>
 
 	<div id="image-carousel" class="dragdealer active">
 
@@ -307,10 +329,11 @@ $(document).ready(function() {
 			style="-webkit-perspective: 1000px; -webkit-backface-visibility: hidden; -webkit-transform: translateX(200px);">
 
 			<!-- 1page -->
-			<li class="slide img1" style="background-color: white;">
+			<li class="slide img1">
 				<div class="table">
                		<div class="container">
-               		<div>
+               		<div class="content" style="width: 60%;margin-left: 20%;">
+               		<h1 >1단계 : 코엑스 방문 목적을 알려주세요!</h1><br>
 							<div class="radio-tile-group">
 
 								<div class="input-container">
@@ -402,10 +425,12 @@ $(document).ready(function() {
 			</li>
 			
 			<!-- 2page -->
-			<li class="slide img2" style="background-color: white;">
-
+			<li class="slide img2" >
+		
 				<div class="calander noselect" style="margin-top: 10%;">
-
+				<div class="content">
+					<h1>2단계 : 방문 날짜를 알려주세요!</h1><br>
+				
 					<div class="cal_head paper-shadow-top-z-2">
 
 						<button class="button_left">
@@ -432,14 +457,15 @@ $(document).ready(function() {
 					<div class="cal_output paper-shadow-top-z-1">
 						<span id="outputText"></span>
 					</div>
-
+					</div>
 				</div>
 			</li>
 			
 			<!-- 3page -->
-			<li class="slide img3"
-				style="background-color: white; ">
-				<div class="timetime" style="margin: 12%; width: 100%;">
+			<li class="slide img3">
+				<div class="content" style="width: 80%;margin: auto; height: 30%;">
+				<div class="timetime" style="margin: 12%; width: 100%;text-align: justify;">
+				<h1 >3단계 : 방문시간을 알려주세요</h1><br>
 				<div class="spaceEmOut">
 					<fieldset class="switch switch-five">
 						<legend>시작시간</legend>
@@ -459,9 +485,7 @@ $(document).ready(function() {
 						<span class="switch-button"></span>
 					</fieldset>
 				</div>
-				</div>
-				<div class="timetime" style="margin: 12%; width: 100%;">
-				<div class="spaceEmOut">
+				<div class="spaceEmOut" style="margin-top: 10%;">
 					<fieldset class="switch switch-five2">
 						<legend>종료시간</legend>
 						<input id="e10" name="answer.end_time" value="10:00" type="radio" checked /> <label for="e10">10시</label>
@@ -481,12 +505,16 @@ $(document).ready(function() {
 					</fieldset>
 				</div>
 				</div>
+				</div>
+			<!-- 	<div class="timetime" style="margin: 12%; width: 100%;">
+				</div> -->
 			</li>
 
 			<!-- 4page -->
-			<li class="slide img4 "
-				style="background-color: white; ">
+			<li class="slide img4 ">
 				<div class="agender-many" style="margin: 11%;">
+				<div class="content">
+					<h1>4단계 : 당신의 나이 성별 그리고 인원을 알려주세요!</h1><br>
 					<div class="cc-selector">
 						<input id="one" type="radio" name="credit-card" value="10" /> <label
 							class="drinkcard-cc one" for="one"></label> <input id="two"
@@ -547,6 +575,7 @@ $(document).ready(function() {
 					
 					<div class="row center">
        					<a class="ghost-button" id="btn_answer_ok">제출하기</a>
+   					</div>
    					</div>
 				</div>
 

@@ -11,9 +11,9 @@
    width : 70%;
     margin-top: 10%;
     margin-left: 15%;
-    background-color: white;opacity:1;
+   background-color: white;opacity:1;
     border-radius: 25px;
-    opacity: 0.8;
+   background:rgba(255,255,255,.7);
     display: flex;
    text-align: center;
 }
@@ -36,6 +36,9 @@ height: 70%;
    display: inline-block;
    margin-top: 10%;
 }
+.sett{
+opacity: 1;
+}
 
 </style>
 </head>
@@ -48,18 +51,31 @@ height: 70%;
 
 	<div class="contents">
 		<div class="left-box" style="border-right: 1px solid black;">
-			<a href="answerPage.action"><h2 style="text-align: center;">
+			<a href="answerPage.action"><h1 style="text-align: center;">
 					일정 <br> 추천받기
-				</h2>
-				<p>추천설명하시떼</p> <!-- <img alt="image" src="img/recommend.png"> --> </a>
+				</h1>
+				<br>
+				<div class="sett">
+				<img alt="qna" src="img/flow.gif" style="width: 80%; opacity: 1;">
+				</div>
+				<p>4단계의 간단한<br> 
+				질문답변을 통해<br>
+				나를 위한 추천스케줄을<br>
+				받아보세요.</p> <!-- <img alt="image" src="img/recommend.png"> --> </a>
 			<!-- <a class="ghost-button" href="#" style="margin-top: 20%;">Ghost button text</a> -->
 		</div>
 
 		<div class="right-box" style="border-left: 1px solid black;">
-			<a href="myself-schedule.action"><h2 style="text-align: center;">
+			<a href="myself-schedule.action"><h1 style="text-align: center;">
 					내가 <br> 직접짜기
-				</h2>
-				<p>직접짜라</p> <!-- <img alt="image" src="img/else.png"> --> </a>
+				</h1>
+				<br>
+				<div class="sett">
+				<img alt="직접" src="img/self.gif" style="width: 80%; opacity: 1;"><br>
+				</div>
+				<p>나만의 코엑스 <br>
+				스케줄을 만들고<br> 
+				사람들과 공유해보세요.</p> <!-- <img alt="image" src="img/else.png"> --> </a>
 		</div>
 	</div>
 

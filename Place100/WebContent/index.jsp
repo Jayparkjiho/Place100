@@ -39,7 +39,6 @@ html {
   -o-background-size: cover; 
   background-size: cover; 
   background-color: rgba(255,255,255,0.5);
-  
 }
 .story{
 margin-top: 30%;

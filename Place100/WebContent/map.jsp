@@ -105,6 +105,7 @@ void mousePressed(){
 }
 
 </script>
+<h1>click to start navigation</h1>
 <canvas id="pjs"> </canvas>
 </body>
 </html>

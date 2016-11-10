@@ -345,7 +345,7 @@ left: 35%;
     border-radius: 50px;
 }
 .board-footer{
-	top: 88%;
+	top: 70%;
     left: 33%;
     position: absolute;
 }
