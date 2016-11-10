@@ -20,14 +20,14 @@
 		line-height: 1.42857143;
 		color: #58666e;
 		background-color: white;
-		margin-left: 40%;
 	}
 </style>
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
-
+<jsp:include page="header.jsp" flush="false"/>
+	<div style="margin-left: 40%">
 	<h1 style="margin:150px auto 30px auto;">스케줄 생성하기</h1>
 		<div id="element"></div>
 		
@@ -35,7 +35,7 @@
 			<a href="javascript:void(0);" id="add">Add More</a><br><br>
 			<a id="scheduleGo">스케줄 생성하기</a>
 		</div>
-		
+	</div>	
 		<script>
 			$(function() {
 				$("#element").timeline({

@@ -96,7 +96,7 @@ span > .category4{
 .board{
     width: 75%;
 margin: 60px auto;
-height: 500px;
+height: 550px;
 background: #fff;
 /*box-shadow: 10px 10px #ccc,-10px 20px #ddd;*/
 }
@@ -116,7 +116,7 @@ background: #fff;
 }
 
 p.narrow{
-    width: 60%;
+    width: 85%;
     margin: 10px auto;
 }
 

@@ -41,7 +41,7 @@ html {
   background-color: rgba(255,255,255,0.5);
 }
 .story{
-margin-top: 30%;
+margin-top: 15%;
 	text-align: center;
 	font-size: 50px;
 	color: white;

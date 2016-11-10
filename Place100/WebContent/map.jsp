@@ -100,9 +100,9 @@ if(clkCnt >pathCount){
 }
 };
 
-void mousePressed(){
-	println(mouseX+"."+mouseY);
-}
+//void mousePressed(){
+//	println(mouseX+"."+mouseY);
+//}
 
 </script>
 <h1>click to start navigation</h1>

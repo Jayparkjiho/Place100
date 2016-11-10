@@ -7,9 +7,9 @@
 <title>Insert title here</title>
 <style type="text/css">
 .contents{
-   height: 70%;
+   height: 78%;
    width : 70%;
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 15%;
    background-color: white;opacity:1;
     border-radius: 25px;
