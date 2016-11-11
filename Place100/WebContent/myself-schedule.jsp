@@ -37,6 +37,7 @@
 		</div>
 	</div>	
 		<script>
+			jQuery.noConflict();
 			$(function() {
 				$("#element").timeline({
 					data: [

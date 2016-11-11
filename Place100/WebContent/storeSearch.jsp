@@ -73,10 +73,8 @@ $(function () {
         }
         else if(place_type === '키즈'){
             place_type = 10;
-         }
+        }
   
-        alert(place_type + "place_type")
-         
            $.ajax({
                url : 'getList',
                type : 'post',

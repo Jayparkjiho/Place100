@@ -23,10 +23,10 @@
 .panel.no-borders .panel-footer {
   border-width: 0;
 }
-/* .timeline {
+.timeline {
   margin: 0;
   padding: 0;
-} */
+}
 .tl-item {
   display: block;
 }

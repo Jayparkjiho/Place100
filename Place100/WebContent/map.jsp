@@ -85,12 +85,13 @@ if(imgs[clkCnt+1]!=null){
 arrow.resize(35,75);
 image(arrow,990,350);
 }
-	fill(0,0,0);
+	fill(72, 249, 44);
   	ellipse(path[path.length-3]-20,path[path.length-2]-10,15,15);
+	fill(0,0,0);
 	textSize(70);
 
 if(clkCnt < path.length-1){
-  text(clkCnt+1+"번째 경로",850,80);
+  text(clkCnt+1+"번째 경로",860,80);
 }
   fill(0,0,0);
 
