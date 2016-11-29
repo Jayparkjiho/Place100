@@ -69,10 +69,10 @@ margin-top: 15%;
    <p class="coex100"><strong>코엑스 100배 즐기기</strong></p>
    
    
-   </div >
+   </div>
    <div class="ghost">
        <a class="ghost-button" href="userCheck.action"><strong>시작하기</strong></a>
-      </div>
+   </div>
    </div>
    <!--  Scripts-->
    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

@@ -108,7 +108,7 @@ $(function () {
 	       var output = '';
 	       
 	       output += "<div>"
-	       output += "<input type='radio' name='storeRadio' value='"+ place.place_name +"'>"
+	       output += "<input type='radio'name='storeRadio' value='"+ place.place_name +"'>"
 	       output += "<span id='placeName'>"+ place.place_name + "</span>"
 	       output += "<span id='placeCategory'>"+ place.place_category + "</span>"
 	       output += "<br>"
