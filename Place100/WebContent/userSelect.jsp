@@ -51,7 +51,7 @@ opacity: 1;
 
 	<div class="contents">
 		<div class="left-box" style="border-right: 1px solid black;">
-			<a href="answerPage.action"><h1 style="text-align: center;">
+			<a href="answerPage.action?schtype=0"><h1 style="text-align: center;">
 					일정 <br> 추천받기
 				</h1>
 				<br>
@@ -66,7 +66,7 @@ opacity: 1;
 		</div>
 
 		<div class="right-box" style="border-left: 1px solid black;">
-			<a href="myself-schedule.action"><h1 style="text-align: center;">
+			<a href="answerPage.action?schtype=1"><h1 style="text-align: center;">
 					내가 <br> 직접짜기
 				</h1>
 				<br>

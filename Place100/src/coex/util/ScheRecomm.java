@@ -117,6 +117,7 @@ public class ScheRecomm {
 			// 스케줄의 마지막 이벤트 시간과 스케줄의 마지막 시간을 비교해 같으면 바로 종료한다.
 			if (checkTimeDiff(endTime, lastEventEndTime) == 0) {
 				System.out.println("스케줄 꽉 참 완성!!");
+				//값을 넣을 때 마지막에 ,을 추가하는데 이것을 다 지워주는 if 문들 
 				if (schedule.getSchedule_event_list().endsWith(","))
 					schedule.setSchedule_event_list(schedule.getSchedule_event_list().substring(0,
 							schedule.getSchedule_event_list().length() - 1));
@@ -157,6 +158,8 @@ public class ScheRecomm {
 			// 마지막 액션(즉 이전 액션을 채워줌)
 			prevPlace = pList.get(pList.size() - 1);
 			System.out.println("이전 Place : " + prevPlace.toString());
+			
+			
 			for (Place p : pList) {
 				// 식사갯수체크
 				if (p.getPlace_type() == 3) {
@@ -196,6 +199,7 @@ public class ScheRecomm {
 			} else if (checkTimeDiff(pandp.getPlace_close_time(), startTime) < 0) {// 영업시간 끝난곳 제거
 				System.out.println(pandp.getPlace_name() + " 영업 종료해서 삭제");
 				pnp.remove();
+				//여기
 			} else if ((pandp.getPlace_type() == 1&&confCnt==1) || pandp.getPlace_type() == 1&&answer.getAnswer_purpose_no()!=0) {
 				System.out.println(pandp.getPlace_name() + " 박람회꽉차서 혹은 방문목적이 박람회가 아니라서 삭제");
 				pnp.remove();
@@ -239,6 +243,7 @@ public class ScheRecomm {
 		// 점수계산부분-----------------------------------------------------------------------------------------------------------------------
 
 		//박람회 관람일경우 박람회에 점수 추가
+		//이거 지금 식사시간이랑 겹치면 식사한테 밀림 수정해야함
 		if(answer.getAnswer_purpose_no()==0){
 			for (PlaceAndPref p : pnpList) {
 				if (p.getPlace_type() == 1) {
@@ -246,6 +251,8 @@ public class ScheRecomm {
 				}
 			}
 		}
+		
+		
 		
 		// 식사시간이면 식사에 1000점씩 추가 (pref_no)에 추가
 		if ((checkTimeDiff("10:59", startTime) == -1 && checkTimeDiff(startTime, "14:00") == -1)// TODO:10:59?
@@ -273,6 +280,18 @@ public class ScheRecomm {
 					}
 				}
 			}
+			
+			//TODO:박람회체크
+			//PrevPlace가 식사(3)이고 박람회가 목적인 경우 박람회장에 식사 이후 바로 갈 수 있도록 가산점(2000)을 준다.
+			// 마다데스 랜덤부분 건너뛰는거 구현해야함
+			if(answer.getAnswer_purpose_no()==0&&prevPlace.getPlace_type()==3){
+				for (PlaceAndPref p : pnpList) {
+					if (p.getPlace_type() == 1) {
+						p.setPref_no(2000);
+					}
+				}
+			}
+			
 			// PrevEvent가 디저트/카페(4) 였다면 문화/여가활동에 1000점 추가 (ex : 영화, 버스킹)
 			if (prevPlace.getPlace_type() == 4) {
 				for (PlaceAndPref p : pnpList) {

@@ -38,6 +38,7 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 	private String totalPath; 
 	private String imageList;
 	private int scheNo;
+	private int schtype;
 	
 	/**
 	 * 입력받은 방문 목적이 전시회일때 전시회에 관련된 action객체 list를 db에서
@@ -245,6 +246,13 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 	}
 	
 	
+	//answer페이지로 넘어 갈때 추천인지 선택인지 분별해주는 메소드
+	public String answerPage(){
+		System.out.println(schtype);
+		return SUCCESS;
+	}
+	
+	
 	
 
 	public int getScheNo() {
@@ -341,6 +349,15 @@ public class AnswerAction extends ActionSupport implements SessionAware {
 
 	public void setActionList(ArrayList<Action> actionList) {
 		this.actionList = actionList;
+	}
+	
+
+	public int getSchtype() {
+		return schtype;
+	}
+
+	public void setSchtype(int schtype) {
+		this.schtype = schtype;
 	}
 
 	@Override

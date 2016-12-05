@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -260,6 +261,29 @@ $(document).ready(function() {
 			dataType:'json',
 			success:function(response){
 				location.href="schedule.action";
+			}
+		});//ajax 종료
+	});
+	
+	//버튼입력시 answer 정보를 담아 스케줄 생성페이지로 넘어가는 메소드
+	$('#btn_myself-schedule').on('click',function(){
+		/* var data = JSON.stringify(answer); */
+		/* var jdata = JSON.parse(data);
+		alert(jdata); */
+		$.ajax({
+			url:'myself-schedule',
+			method:'post',
+			data: {	"answer.answer_purpose_no":answer_purpose_no,
+					"answer.answer_date" :answer_date,
+					"answer.answer_start_time":answer_start_time,
+					"answer.answer_end_time":answer_end_time,
+					"answer.answer_age":parseInt(answer_age,10),
+					"answer.answer_sex":parseInt(answer_sex,10),
+					"answer.answer_head_count":parseInt(answer_head_count,10)
+					},
+			dataType:'json',
+			success:function(response){
+				location.href="myself-schedule.action";
 			}
 		});//ajax 종료
 	});
@@ -559,7 +583,12 @@ html {
 					
 					
 					<div class="row center">
-       					<a class="ghost-button" id="btn_answer_ok">제출하기</a>
+						<s:if test="schtype==0">
+       						<a class="ghost-button" id="btn_answer_ok">제출하기</a>
+						</s:if>
+						<s:else>
+							<a class="ghost-button" id="btn_myself-schedule">다음화면</a>
+						</s:else>
    					</div>
    					</div>
 				</div>
