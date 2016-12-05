@@ -160,6 +160,11 @@ input[type=text]:focus {
          <a id="logo-container" href="main.action" class="brand-logo" style="text-decoration:none">
          <img alt="로고" src="img/coex-raku.png" width="100"></a>
 
+		<ul class="right hide-on-med-and-down">
+            <li><a data-activates="nav-mobile" href="placeList.action"
+               class="fark">장소 조회</a></li>
+         </ul>
+
          <ul class="right hide-on-med-and-down">
             <li><a data-activates="nav-mobile" href="answerPage.action"
                class="fark">새 스케줄 생성</a></li>

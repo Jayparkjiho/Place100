@@ -90,6 +90,17 @@
     	<result>/storeSearch.jsp</result>
     </action>
     
+    <!-- 상점 리스트를  불러오는 action xml tag -->
+    <action name="getPlaces" class="coex.action.PlaceListAction" method="getPlaces">
+    	<result type="json"/>
+    </action>
+    
+    <!-- 상점 리스트로 가는 action xml tag -->
+    <action name="placeList">
+    	<result>/place-list.jsp</result>
+    </action>
+    
+    
     <!-- ***********************************************************************************************8 -->
     <!-- 어떻게 되어있는것인지 잘 모르겠는 부분 왜 insertAnswer따로고 schedule 명령어 따로고, getdata는 왜 메소드가 같은 건인지 -->
 <!--     
@@ -147,20 +158,6 @@
     <!-- <action name="insertPlaceForm">
     	<result>/insertPlaceForm.jsp</result>
     </action> -->
-    
-    
-
-    <!-- 상점 리스트를  불러오는 action xml tag -->
-    <action name="getList" class="coex.action.PlaceAction" method="getPlaceList">
-    	<result type="json"/>
-    </action>
-    
-    <!-- 상점 리스트로 가는 action xml tag -->
-    <action name="placeList2">
-    	<result>/placeList2.jsp</result>
-    </action>
-    
-
     
 
     </package>

@@ -91,6 +91,26 @@ public class PlaceDAO {
 		return result;
 	}
 	
+	public List<Place> getPlaces(int place_type, int startRecord, int countPerPage){
+		System.out.println("getPlaces()함수 실행" + place_type + " " + startRecord + " " + countPerPage);
+		List<Place> placeList = null;
+		
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("place_type", place_type);
+		
+		RowBounds bound = new RowBounds(startRecord, countPerPage);
+		
+		try{
+			sqlSession = sqlSessionFactory.openSession();
+			placeList = sqlSession.selectList("PlaceMapper.getPlaces", map, bound);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+		return placeList;
+	}
+	
 	/**
 	 * 장소번호로 장소를 찾는 메쏘드
 	 * TODO:FINDPLACE
